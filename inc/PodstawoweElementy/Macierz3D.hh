@@ -44,7 +44,7 @@ class Macierz3D : public SMacierz<Wektor, double, ROZMIAR>{
 
         \retval Wartość mnożenia skalarnego dwóch parametrów wywołania.
     */
-    Wektor3D operator* (Wektor3D Wektor2) const;
+    Wektor3D operator* (Wektor3D Wektor2);
 };
 
 #endif

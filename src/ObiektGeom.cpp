@@ -6,8 +6,8 @@
 */
 bool ObiektGeom::Przelicz_i_Zapisz_Wierzcholki()
 {
-    std::ifstream Input (NazwaPliku_BrylaWzorcowa);
-        if(Input.fail()) return false;
+    std::ifstream Input (NazwaPliku_BrylaWzorcowa); // Deklaracja i otwarcie strumienia wejściowego
+        if(Input.fail()) return false; // Sprawdzenie poprawnosci otwarcia strumienia wejsciowego
     
     std::ofstream Output (NazwaPliku_PlikDoRysowania);
         if(Output.fail()) return false;
@@ -17,7 +17,9 @@ bool ObiektGeom::Przelicz_i_Zapisz_Wierzcholki()
     return false;
 }
 
-/* Metoda do odczytu, obliczenia i zapisu wyliczonych współrzędnych */
+/* 
+    Metoda do odczytu, obliczenia i zapisu wyliczonych współrzędnych 
+*/
 bool ObiektGeom::Przelicz_i_Zapisz_Wierzcholki(std::istream& Input, std::ostream& Output)
 {
     int Indeks = 0;     // Zmienna pomocnicza do zliczania liczby pobranych wierszy

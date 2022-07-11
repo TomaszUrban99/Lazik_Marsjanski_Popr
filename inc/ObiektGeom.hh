@@ -23,6 +23,24 @@ class ObiektGeom
 
     public:
 
+    /* Konstruktory i destruktory klasy ObiektGeom */
+
+    ObiektGeom ( int Kolor, Wektor3D KatPoczatkowy,
+                    Wektor3D PolozeniePoczatkowe, Wektor3D SkalaPoczatkowa, 
+                    std::string NazwaPlikuBrylaWzorcowa,
+                    std::string NazwaPlikuBrylaDoRysowania )
+    {
+        KolorID = Kolor;
+        KatOrientacji = KatPoczatkowy;
+        MacierzRotacji = MacierzRotacji.MacierzRotacjiZ(KatOrientacji[0]);
+        Polozenie = PolozeniePoczatkowe;
+        Skala = SkalaPoczatkowa;
+        NazwaPliku_BrylaWzorcowa = NazwaPlikuBrylaWzorcowa;
+        NazwaPliku_PlikDoRysowania = NazwaPlikuBrylaDoRysowania;
+    }
+
+    ~ObiektGeom() = default;
+
     /* Interfejs klasy ObiektGeom */
 
     /* KolorID */
