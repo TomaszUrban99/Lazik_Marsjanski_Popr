@@ -114,7 +114,7 @@ class Wektor3D : public SWektor<double, ROZMIAR> {
         \retval Obiekt klasy Wektor3D będący wynikiem mnożenia element to element
         dwóch wektorów będących parametrami wywołania metody.
     */
-    Wektor3D operator*(Wektor3D& Wektor2);
+    Wektor3D operator*(Wektor3D& Wektor2) const;
 
     void operator=(SWektor<double, ROZMIAR> Wektor2){
         for(int i = 0; i < ROZMIAR; ++i) (*this)[i] = Wektor2[i];}
