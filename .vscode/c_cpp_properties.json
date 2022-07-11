@@ -3,7 +3,8 @@
         {
             "name": "Linux",
             "includePath": [
-                "${workspaceFolder}/**"
+                "${workspaceFolder}/**",
+                "${workspaceFolder}/inc/Templates"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/gcc",
