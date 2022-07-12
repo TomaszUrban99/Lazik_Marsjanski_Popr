@@ -1,25 +1,26 @@
 #include "Macierz3D.hh"
 
-/* Metoda zwracająca macierz rotacji wokół osi Z kartezjańskiego układu współrzędnych */
-Macierz3D Macierz3D::MacierzRotacji(Wektor3D KatyOrientacjiSt)
+/* 
+    Metoda zwracająca macierz rotacji wokół osi Z kartezjańskiego układu współrzędnych
+        Z-Y-X - kolejność osi wokół, których dokonywana będzie rotacja
+*/
+void Macierz3D::MacierzRotacji(Wektor3D& KatyOrientacjiSt)
 {
     Wektor3D KatyOrientacjiRad = KatyOrientacjiSt.KonwersjaNaRadiany(); // Zapisanie wartości kąta wyrażonej w radianach
     Wektor3D Cosinus = KatyOrientacjiRad.Cosinus(); // Zmienna Cosinus do przechowywania wartości cosinusa kąta
     Wektor3D Sinus = KatyOrientacjiRad.Sinus(); // Zmienna Sinus do przechowywania wartości sinusa kąta
 
-    (*this)(ZERO, ZERO) = Cosinus;
-    (*this)(ZERO, JEDEN) = (-1)*Sinus;
-    (*this)(ZERO, DWA) = ZERO;
+    (*this)(ZERO, ZERO) = Cosinus[ZERO] * Cosinus[JEDEN];
+    (*this)(ZERO, JEDEN) = (Cosinus[ZERO] * Sinus[JEDEN] * Sinus[DWA]) - (Sinus[ZERO] * Cosinus[DWA]);
+    (*this)(ZERO, DWA) = (Cosinus[ZERO] * Sinus[JEDEN] * Cosinus[DWA]) + (Sinus[ZERO] * Sinus[DWA]);
 
-    (*this)(JEDEN, ZERO) = Sinus;
-    (*this)(JEDEN, JEDEN) = Cosinus;
-    (*this)(JEDEN, DWA) = ZERO;
+    (*this)(JEDEN, ZERO) = Sinus[ZERO] * Cosinus[JEDEN];
+    (*this)(JEDEN, JEDEN) = (Sinus[ZERO] * Sinus[JEDEN] * Sinus[DWA]) + (Cosinus[ZERO] * Cosinus[DWA]);
+    (*this)(JEDEN, DWA) = (Sinus[ZERO] * Sinus[JEDEN] * Cosinus[DWA]) - (Cosinus[ZERO] * Sinus[DWA]);
 
-    (*this)(DWA, ZERO) = ZERO;
-    (*this)(DWA, JEDEN) = ZERO;
-    (*this)(DWA, DWA) = JEDEN;
-
-    return (*this);
+    (*this)(DWA, ZERO) = (-1) * Sinus[JEDEN];
+    (*this)(DWA, JEDEN) = Cosinus[JEDEN] * Sinus[DWA];
+    (*this)(DWA, DWA) = Cosinus[JEDEN] * Cosinus[DWA];
 }
 
 /* 

@@ -21,7 +21,7 @@ ${OBJ}:
 ${TRGDIR}/test_lazikap: ${OBJ}/main.o ${OBJ}/ObiektGeom.o ${OBJ}/Wektor3D.o ${OBJ}/Macierz3D.o ${OBJ}/OperacjeMat.o ${OBJ}/Obiekt.o
 	g++ -o ${TRGDIR}/test_lazikap ${OBJ}/main.o ${OBJ}/ObiektGeom.o ${OBJ}/Wektor3D.o ${OBJ}/Macierz3D.o ${OBJ}/OperacjeMat.o ${OBJ}/Obiekt.o
 
-${OBJ}/main.o: src/main.cpp ${PODSTINC}/Wektor3D.hh
+${OBJ}/main.o: src/main.cpp ${PODSTINC}/Wektor3D.hh ${PODSTINC}/Macierz3D.hh
 	g++ ${CXXFLAGS} -o ${OBJ}/main.o src/main.cpp
 
 ${OBJ}/Obiekt.o: src/Obiekt.cpp inc/ObiektGeom.hh

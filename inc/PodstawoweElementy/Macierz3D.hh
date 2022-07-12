@@ -33,7 +33,7 @@ class Macierz3D : public SMacierz<Wektor, double, ROZMIAR>{
 
         \retval Macierz rotacji dla obrotu wokół osi Z.
     */
-    Macierz3D MacierzRotacji (Wektor3D KatyOrientacjiSt);
+    void MacierzRotacji (Wektor3D& KatyOrientacjiSt);
 
     /*!
         \brief Przeciążenie operatora mnożenia skalarnego trójwymiarowej macierzy i wektora.

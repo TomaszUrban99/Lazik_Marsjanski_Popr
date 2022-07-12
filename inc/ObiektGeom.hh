@@ -32,7 +32,7 @@ class ObiektGeom
     {
         KolorID = Kolor;
         KatOrientacji = KatPoczatkowy;
-        MacierzRotacji = MacierzRotacji.MacierzRotacji(KatOrientacji);
+        MacierzRotacji.MacierzRotacji(KatOrientacji);
         Polozenie = PolozeniePoczatkowe;
         Skala = SkalaPoczatkowa;
         NazwaPliku_BrylaWzorcowa = NazwaPlikuBrylaWzorcowa;
