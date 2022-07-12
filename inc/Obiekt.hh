@@ -4,6 +4,7 @@
 #include <string>
 #include <list>
 #include <memory>
+#include "ObiektGeom.hh"
 #include "Wektor3D.hh"
 
 class Obiekt
@@ -17,6 +18,21 @@ class Obiekt
   std::list<std::shared_ptr<ObiektGeom>> Lista_Skladowych_ObiektowGeom;
 
   public:
+
+  /* Konstruktory i destruktory obiektu klasy Obiekt */
+
+  Obiekt(Wektor3D PoczatkowePolozenie, Wektor3D NowaSkala,
+            Wektor3D PoczatkowyKatOrientacji, std::string NowaNazwa,
+            std::list<std::shared_ptr<ObiektGeom>> ListaObiektow)
+    {
+        _Polozenie = PoczatkowePolozenie;
+        _Skala = NowaSkala;
+        _KatOrientacjiSt = PoczatkowyKatOrientacji;
+        _NazwaObiektu = NowaNazwa;
+        Lista_Skladowych_ObiektowGeom = ListaObiektow;
+    }
+
+    ~Obiekt() = default;
 
   /* Interfejs klasy Obiekt */
 
@@ -67,6 +83,9 @@ class Obiekt
             { _NazwaObiektu = NowaNazwa;}
         void Change_NazwaObiektu (const std::string NowaNazwa)
             { _NazwaObiektu = NowaNazwa;}
+    
+    /* Metody klasy Obiekt */
+    
 };
 
 

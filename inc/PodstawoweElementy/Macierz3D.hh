@@ -19,6 +19,8 @@ constexpr int DWA = 2;
 
 */
 class Macierz3D : public SMacierz<Wektor, double, ROZMIAR>{
+
+    Wektor3D KonwersjaNaRadiany(Wektor3D& KatOrientacjiSt) const;
     
     public:
 
@@ -31,7 +33,7 @@ class Macierz3D : public SMacierz<Wektor, double, ROZMIAR>{
 
         \retval Macierz rotacji dla obrotu wokół osi Z.
     */
-    Macierz3D MacierzRotacjiZ (double AngleSt);
+    Macierz3D MacierzRotacji (Wektor3D KatyOrientacjiSt);
 
     /*!
         \brief Przeciążenie operatora mnożenia skalarnego trójwymiarowej macierzy i wektora.

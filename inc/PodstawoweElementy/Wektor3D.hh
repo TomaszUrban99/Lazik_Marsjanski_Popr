@@ -3,6 +3,7 @@
 
 #include "SWektor.hh"
 #include "rozmiar.h"
+#include "OperacjeMat.hh"
 
 constexpr int ZERO = 0;
 constexpr int ONE = 1;
@@ -118,6 +119,57 @@ class Wektor3D : public SWektor<double, ROZMIAR> {
 
     void operator=(SWektor<double, ROZMIAR> Wektor2){
         for(int i = 0; i < ROZMIAR; ++i) (*this)[i] = Wektor2[i];}
+    
+    /* Metody klasy Wektor3D */
+
+    /*!
+        \brief Metoda zamieniająca poszczególne pola obiektu klasy Wektor3D, zawierające
+        wyrażone w stopniach kąty.
+
+        Metoda umożliwia zamianę wartości kątów wyrażonych w stopniach na radiany. Działanie
+        opiera się na wykorzystaniu funkcji StopnieNaRadiany zadeklarowanej w pliku nagłówkowym
+        OperacjeMat.hh.
+
+        KonwersjaNaRadiany nie modyfikuje obiektu, dla której została wywołana.
+
+        \retval Wektor3D Temp - obiekt klasy Wektor3D przechowujący wartości kątów z obiektu, dla którego
+        metoda została wywołana, wyrażone w radianach.
+    */
+    Wektor3D KonwersjaNaRadiany() const;
+    
+    /*!
+        \brief Metoda wyznaczająca cosinusy kątów przechowywanych w obiekcie, dla którego metoda
+        została wywołana.
+
+        Działanie metody opiera się na wykorzystaniu funkcji cos() zdefiniowanej w biliotece math.h.
+        Z kolejnych wartości kątów przechowywanych w obiekcie, dla którego metoda została wywołana
+        wyznaczane są wartości cosinusów przy użyciu funkcji cos().
+
+        Warunkiem poprawnego działania metody jest wyrażenie wejściowych kątów w RADIANACH.
+
+        Obiekt wejściowy nie jest modyfikowany.
+
+        \retval Wektor3D Temp - wektor zawierający cosinusy kątów z pól o odpowiadających sobie
+        indeksach pól
+    */
+    Wektor3D Cosinus() const;
+    
+    /*!
+        \brief Metoda wyznaczająca sinusy kątów przechowywanych w obiekcie, dla którego metoda
+        została wywołana.
+
+        Działanie metody opiera się na wykorzystaniu funkcji sin() zdefiniowanej w biliotece math.h.
+        Z kolejnych wartości kątów przechowywanych w obiekcie, dla którego metoda została wywołana
+        wyznaczane są wartości cosinusów przy użyciu funkcji sin().
+
+        Warunkiem poprawnego działania metody jest wyrażenie wejściowych kątów w RADIANACH.
+
+        Obiekt wejściowy nie jest modyfikowany.
+
+        \retval Wektor3D Temp - wektor zawierający sinusy kątów z pól o odpowiadających sobie indeksach
+        pól.
+    */
+    Wektor3D Sinus () const;
 
 };
 

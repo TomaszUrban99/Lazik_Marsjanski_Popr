@@ -1,11 +1,11 @@
 #include "Macierz3D.hh"
 
 /* Metoda zwracająca macierz rotacji wokół osi Z kartezjańskiego układu współrzędnych */
-Macierz3D Macierz3D::MacierzRotacjiZ(double AngleSt)
+Macierz3D Macierz3D::MacierzRotacji(Wektor3D KatyOrientacjiSt)
 {
-    double AngleRad = StopnieNaRadiany(AngleSt); // Zapisanie wartości kąta wyrażonej w radianach
-    double Cosinus = cos(AngleRad); // Zmienna Cosinus do przechowywania wartości cosinusa kąta
-    double Sinus = sin(AngleRad); // Zmienna Sinus do przechowywania wartości sinusa kąta
+    Wektor3D KatyOrientacjiRad = KatyOrientacjiSt.KonwersjaNaRadiany(); // Zapisanie wartości kąta wyrażonej w radianach
+    Wektor3D Cosinus = KatyOrientacjiRad.Cosinus(); // Zmienna Cosinus do przechowywania wartości cosinusa kąta
+    Wektor3D Sinus = KatyOrientacjiRad.Sinus(); // Zmienna Sinus do przechowywania wartości sinusa kąta
 
     (*this)(ZERO, ZERO) = Cosinus;
     (*this)(ZERO, JEDEN) = (-1)*Sinus;
