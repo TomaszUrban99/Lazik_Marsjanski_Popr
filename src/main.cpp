@@ -4,6 +4,8 @@
 #include "Macierz3D.hh"
 #include "ObiektGeom.hh"
 #include "Obiekt.hh"
+#include "PowierzchniaMarsa.hh"
+#include "lacze_do_gnuplota.hh"
 
 using namespace std;
 
@@ -25,6 +27,14 @@ int main()
   cout << "Lista obiektow skladowych: " << endl;
   cout << OBB.Get_ListaObiektowSkladowych();
 
+  PzG::LaczeDoGNUPlota Lacze;
+
+  Dodaj_Do_ListyRysowania(Lacze);
+
+  Lacze.Rysuj();
+  cout << "Pacnij cos"<< endl;
+  int i;
+  cin >> i;
 
   /* __________ Test klasy ObiektGeom.hh _______________ */
 

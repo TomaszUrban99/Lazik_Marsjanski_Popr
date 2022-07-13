@@ -18,14 +18,20 @@ ${TRGDIR}:
 ${OBJ}:
 	mkdir -p ${OBJ}
 
-${TRGDIR}/test_lazikap: ${OBJ}/main.o ${OBJ}/ObiektGeom.o ${OBJ}/Wektor3D.o ${OBJ}/Macierz3D.o ${OBJ}/OperacjeMat.o ${OBJ}/Obiekt.o
-	g++ -o ${TRGDIR}/test_lazikap ${OBJ}/main.o ${OBJ}/ObiektGeom.o ${OBJ}/Wektor3D.o ${OBJ}/Macierz3D.o ${OBJ}/OperacjeMat.o ${OBJ}/Obiekt.o
+${TRGDIR}/test_lazikap: ${OBJ}/main.o ${OBJ}/ObiektGeom.o ${OBJ}/Wektor3D.o ${OBJ}/Macierz3D.o ${OBJ}/OperacjeMat.o ${OBJ}/Obiekt.o ${OBJ}/PowierzchniaMarsa.o ${OBJ}/GNUPlot.o
+	g++ -o ${TRGDIR}/test_lazikap ${OBJ}/main.o ${OBJ}/ObiektGeom.o ${OBJ}/Wektor3D.o ${OBJ}/Macierz3D.o ${OBJ}/OperacjeMat.o ${OBJ}/Obiekt.o ${OBJ}/PowierzchniaMarsa.o ${OBJ}/GNUPlot.o
 
 ${OBJ}/main.o: src/main.cpp ${PODSTINC}/Wektor3D.hh ${PODSTINC}/Macierz3D.hh
 	g++ ${CXXFLAGS} -o ${OBJ}/main.o src/main.cpp
 
 ${OBJ}/Obiekt.o: src/Obiekt.cpp inc/ObiektGeom.hh
 	g++ ${CXXFLAGS} -o ${OBJ}/Obiekt.o src/Obiekt.cpp
+
+${OBJ}/PowierzchniaMarsa.o: src/PowierzchniaMarsa.cpp inc/lacze_do_gnuplota.hh
+	g++ ${CXXFLAGS} -o ${OBJ}/PowierzchniaMarsa.o src/PowierzchniaMarsa.cpp
+
+${OBJ}/GNUPlot.o: src/lacze_do_gnuplota.cpp
+	g++ ${CXXFLAGS} -o ${OBJ}/GNUPlot.o src/lacze_do_gnuplota.cpp
 
 ${OBJ}/ObiektGeom.o: src/ObiektGeom.cpp inc/ObiektGeom.hh ${PODSTINC}/Macierz3D.hh ${PODSTINC}/Wektor3D.hh 
 	g++ ${CXXFLAGS} -o ${OBJ}/ObiektGeom.o src/ObiektGeom.cpp

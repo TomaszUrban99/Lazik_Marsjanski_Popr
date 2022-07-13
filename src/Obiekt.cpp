@@ -13,6 +13,7 @@ void Obiekt::DodajObiekt(   Wektor3D& PolozenieWzgledne,
                                 // Dodanie obiektu do listy obiektów składowych
 }
 
+/* Przeciążenie operatora wyjścia */
 std::ostream& operator<<(std::ostream& Output, 
                             std::list<std::shared_ptr<ObiektGeom>> ListaObiektowSkladowych)
 {
