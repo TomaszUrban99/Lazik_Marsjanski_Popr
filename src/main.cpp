@@ -25,11 +25,9 @@ int main()
   OBB.DodajObiekt(Temp, Temp2, Collere);
 
   cout << "Lista obiektow skladowych: " << endl;
-  cout << OBB.Get_ListaObiektowSkladowych();
+  cout << OBB.Get_ListaObiektowSkladowych() << endl;
 
   PzG::LaczeDoGNUPlota Lacze;
-
-  Dodaj_Do_ListyRysowania(Lacze);
 
   Lacze.Rysuj();
   cout << "Pacnij cos"<< endl;

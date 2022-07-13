@@ -3,7 +3,9 @@
 
 #include <list>
 #include <memory>
+
 #include "Obiekt.hh"
+#include "PowierzchniaMarsa.hh"
 #include "lacze_do_gnuplota.hh"
 
 class Scena {
@@ -12,6 +14,8 @@ class Scena {
     PzG::LaczeDoGNUPlota Lacze;
 
     public:
+
+    void Inicjalizuj_Lacze();
 
 };
 
