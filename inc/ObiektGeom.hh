@@ -18,6 +18,7 @@ class ObiektGeom
 
     Macierz3D MacierzRotacji;
 
+    std::string Nazwa_ElementuSkladowego;
     std::string NazwaPliku_BrylaWzorcowa;
     std::string NazwaPliku_PlikDoRysowania;
 
@@ -26,7 +27,8 @@ class ObiektGeom
     /* Konstruktory i destruktory klasy ObiektGeom */
 
     ObiektGeom ( int Kolor, Wektor3D KatPoczatkowy,
-                    Wektor3D PolozeniePoczatkowe, Wektor3D SkalaPoczatkowa, 
+                    Wektor3D PolozeniePoczatkowe, Wektor3D SkalaPoczatkowa,
+                    std::string NazwaElementuSkladowego, 
                     std::string NazwaPlikuBrylaWzorcowa,
                     std::string NazwaPlikuBrylaDoRysowania )
     {
@@ -35,6 +37,7 @@ class ObiektGeom
         MacierzRotacji.MacierzRotacji(KatOrientacji);
         Polozenie = PolozeniePoczatkowe;
         Skala = SkalaPoczatkowa;
+        Nazwa_ElementuSkladowego = NazwaElementuSkladowego;
         NazwaPliku_BrylaWzorcowa = NazwaPlikuBrylaWzorcowa;
         NazwaPliku_PlikDoRysowania = NazwaPlikuBrylaDoRysowania;
     }
@@ -78,7 +81,13 @@ class ObiektGeom
                 { Skala = NowaSkala; }
             void Zmien_Skale ( const Wektor3D NowaSkala)
                 { Skala = NowaSkala; }
-                
+    
+    /* Nazwa bryły */
+
+        /* Dostep do zawartosci pola Nazwa_ElementuSkladowego */
+            std::string Get_NazwaElementuSkladowego ()
+                { return Nazwa_ElementuSkladowego; }
+        
     /* Nazwa pliku z bryla wzorcowa */
     
         /* Zmiana wartosci pola */

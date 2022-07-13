@@ -19,19 +19,20 @@ constexpr int DWA = 2;
 
 */
 class Macierz3D : public SMacierz<Wektor, double, ROZMIAR>{
-
-    Wektor3D KonwersjaNaRadiany(Wektor3D& KatOrientacjiSt) const;
     
     public:
 
     /*!
-        \brief Metoda zwracająca macierz rotacji wokół osi Z w kartezjańskim
-        układzie współrzędnych
+        \brief Metoda wyliczająca macierz rotacji, dla aktualnej orientacji.
 
-        \param double AngleSt - wartość kąta wyrażona w stopniach, dla którego
-        ma zostać wyznaczona macierz rotacji
+        \param Wektor3D& KatyOrientacjiSt - referencja do obiektu klasy Wektor3D, przechowującego
+        wartość kątów obrotu wokół osi Z-Y-X (w takiej samej kolejności) wyrażonych w STOPNIACH.
 
-        \retval Macierz rotacji dla obrotu wokół osi Z.
+        W pierwszej kolejność wartości kątów przechowywane w zmiennej KatyOrientacjiSt są przeliczane
+        na radiany i zapisywane w tymczasowym obiekcie typu Wektor3D - KatyOrientacjiRad. Następnie tworzone
+        są obiekty przechowujące cosinusy i sinusy kątów.
+
+        \retval BRAK - metoda typu void
     */
     void MacierzRotacji (Wektor3D& KatyOrientacjiSt);
 

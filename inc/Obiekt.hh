@@ -22,14 +22,12 @@ class Obiekt
   /* Konstruktory i destruktory obiektu klasy Obiekt */
 
   Obiekt(Wektor3D PoczatkowePolozenie, Wektor3D NowaSkala,
-            Wektor3D PoczatkowyKatOrientacji, std::string NowaNazwa,
-            std::list<std::shared_ptr<ObiektGeom>> ListaObiektow)
+            Wektor3D PoczatkowyKatOrientacji, std::string NowaNazwa )
     {
         _Polozenie = PoczatkowePolozenie;
         _Skala = NowaSkala;
         _KatOrientacjiSt = PoczatkowyKatOrientacji;
         _NazwaObiektu = NowaNazwa;
-        Lista_Skladowych_ObiektowGeom = ListaObiektow;
     }
 
     ~Obiekt() = default;
@@ -84,9 +82,47 @@ class Obiekt
         void Change_NazwaObiektu (const std::string NowaNazwa)
             { _NazwaObiektu = NowaNazwa;}
     
-    /* Metody klasy Obiekt */
+  /* atrybut: ListaSkladowych_ObiektowGeom */
+
+    /* Uzyskanie dostepu do pola ListaSkladowych_ObiektowGeom */
+        std::list<std::shared_ptr<ObiektGeom>> Get_ListaObiektowSkladowych ()
+            { return Lista_Skladowych_ObiektowGeom; }
     
+    /* Metody klasy Obiekt */
+
+    /*!
+        \brief Metoda umożliwiająca dodanie składowego obiektu klasy ObiektGeom
+
+        \param Wektor3D& PolozenieWzgledne - referencja do wektora przechowującego położenie dodawanego
+            obiektu względem położenia obiektu, do którego dodawana jest 
+        \param Wektor3D& OrientacjaWzgledna - referencja do wektora przechowującego względne kąty 
+            Eulera wyrażone w stopniach
+        \param std::shared_ptr<ObiektGeom> NowyObiekt - wskaźnik na obiekt klasy ObiektGeom, ktory
+            zostać dodany do listy obiektow skladowych
+    */
+        void DodajObiekt(   Wektor3D& PolozenieWzgledne,
+                            Wektor3D& OrientacjaWzgledna,
+                            std::shared_ptr<ObiektGeom> NowyObiekt );        
+
 };
+
+/* Przeciążenia operatorów */
+
+/* Operator wypisywania listy obiektu */
+
+/*!
+    \brief Przeciążenie operatora wyjścia dla listy wskaźników inteligentnych wskazujących na obiekty
+        typu ObiektGeom
+    
+    \param std::ostream& Output - referencja do strumienia wyjściowego, na który ma zostać wypisana
+        zawartość listy
+    \param std::list<std::shared_ptr<ObiektGeom>> ListaObiektowSkladowych - lista, której zawartość
+        ma zostać wypisana
+    
+    \retval Referencja do strumienia wyjściowego, na który została wypisana zawartość listy.
+*/
+std::ostream& operator<<(std::ostream& Output, 
+                    std::list<std::shared_ptr<ObiektGeom>> ListaObiektowSkladowych);
 
 
 #endif
