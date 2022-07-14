@@ -9,3 +9,8 @@ void Scena::Inicjalizuj_Lacze()
     Lacze.UstawRotacjeXZ (40, 60);
     Lacze.Inicjalizuj();
 }
+
+void Scena::Dodaj_Do_Listy_Scena(std::shared_ptr<Obiekt> NowyObiekt)
+{
+    
+}

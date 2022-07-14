@@ -15,7 +15,13 @@ class Scena {
 
     public:
 
+    /* Interfejs klasy Scena */
+
+    /* Lacze do GNUPlota */
+        PzG::LaczeDoGNUPlota& Get_Lacze () { return Lacze; }
+
     void Inicjalizuj_Lacze();
+    void Dodaj_Do_Listy_Scena (std::shared_ptr<Obiekt> NowyObiekt);
 
 };
 

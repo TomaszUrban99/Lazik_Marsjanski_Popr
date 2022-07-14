@@ -6,6 +6,7 @@
 #include "Obiekt.hh"
 #include "PowierzchniaMarsa.hh"
 #include "lacze_do_gnuplota.hh"
+#include "Scena.hh"
 
 using namespace std;
 
@@ -20,16 +21,17 @@ int main()
   Macierz3D Macierz;
   ObiektGeom Ob1 ( 3, Temp2, Temp, Skala, "Kostka", "bryly_wzorcowe/szescian1.dat","pliki_do_rysowania/Probka1");
   Obiekt OBB (Temp, Skala, Temp2, "Gender");
+  Scena Mars;
 
   std::shared_ptr<ObiektGeom> Collere = make_shared<ObiektGeom>(Ob1);
   OBB.DodajObiekt(Temp, Temp2, Collere);
+  Mars.Inicjalizuj_Lacze();
+  Dodaj_Do_ListyRysowania(Mars.Get_Lacze());
 
   cout << "Lista obiektow skladowych: " << endl;
   cout << OBB.Get_ListaObiektowSkladowych() << endl;
 
-  PzG::LaczeDoGNUPlota Lacze;
-
-  Lacze.Rysuj();
+  Mars.Get_Lacze().Rysuj();
   cout << "Pacnij cos"<< endl;
   int i;
   cin >> i;
