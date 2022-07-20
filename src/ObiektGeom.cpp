@@ -30,15 +30,17 @@ bool ObiektGeom::Przelicz_i_Zapisz_Wierzcholki(std::istream& Input, std::ostream
     {
         Input >> WspWierz; // Pobranie współrzednych jednego wierzcholka z pliku z bryłą wzorcową
             if(Input.fail()) return false;
-        
+
         WspWierz = MacierzRotacji * ( Skala * WspWierz ) + Polozenie;
             // Wyliczenie nowych współrzędnych
         
-        Output << WspWierz; // Zapis współrzędnych do pliku, z którego będzie rysował GNUplot
+        Output << WspWierz << std::endl; // Zapis współrzędnych do pliku, z którego będzie rysował GNUplot
             if(Output.fail()) return false;
         
         ++Indeks; // Po wykonaniu kompletu operacji (odczyt, zapis, obliczenia) zwiększ wartość zmiennej
                 // Indeks o jeden
+        
+        if (Indeks%4 == 0) Output << std::endl;
     }
     
     if(!Input.eof() || ( Indeks%4 != 0 )) return false;

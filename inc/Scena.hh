@@ -21,7 +21,11 @@ class Scena {
         PzG::LaczeDoGNUPlota& Get_Lacze () { return Lacze; }
 
     void Inicjalizuj_Lacze();
-    void Dodaj_Do_Listy_Scena (std::shared_ptr<Obiekt> NowyObiekt);
+    bool Dodaj_Do_Listy_Scena (Obiekt& NowyObiekt);
+
+    void Dodaj_Do_ListyRysowania ();
+
+    void Dodaj_Do_Listy_Obiekty ( std::shared_ptr<Obiekt> NowyObiekt );
 
 };
 

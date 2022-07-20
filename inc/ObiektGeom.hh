@@ -26,8 +26,10 @@ class ObiektGeom
 
     /* Konstruktory i destruktory klasy ObiektGeom */
 
-    ObiektGeom ( int Kolor, Wektor3D KatPoczatkowy,
-                    Wektor3D PolozeniePoczatkowe, Wektor3D SkalaPoczatkowa,
+    ObiektGeom () {}
+
+    ObiektGeom ( int Kolor, Wektor3D& KatPoczatkowy,
+                    Wektor3D& PolozeniePoczatkowe, Wektor3D& SkalaPoczatkowa,
                     std::string NazwaElementuSkladowego, 
                     std::string NazwaPlikuBrylaWzorcowa,
                     std::string NazwaPlikuBrylaDoRysowania )
@@ -48,7 +50,12 @@ class ObiektGeom
 
     /* KolorID */
 
-    void Zmien_KolorID (int NowyKolorID) { KolorID = NowyKolorID;}
+        /* Dostęp do identyfikatora koloru */
+            int Wez_KolorID () const { return KolorID; }
+            int& Wez_KolorID () { return KolorID; }
+
+        /* Zmiana koloru */
+            void Zmien_KolorID (int NowyKolorID) { KolorID = NowyKolorID;}
 
     /* Kat Orientacji */
         
@@ -95,7 +102,7 @@ class ObiektGeom
                 { NazwaPliku_BrylaWzorcowa = NowaNazwa; }
             void Zmien_NazwaPliku_BrylaWzorcowa ( const std::string NowaNazwa )
                 { NazwaPliku_BrylaWzorcowa = NowaNazwa; }
-    
+        
     /* Nazwa pliku do rysowania przez program */
 
         /* Zmiana wartosci pola */
@@ -103,6 +110,10 @@ class ObiektGeom
                 { NazwaPliku_PlikDoRysowania = NowaNazwa; }
             void Zmien_NazwaPliku_PlikDoRysowania ( const std::string NowaNazwa)
                 { NazwaPliku_PlikDoRysowania = NowaNazwa; }
+        
+        /* Uzyskanie dostępu do nazwy pliku do rysowania */
+            std::string& Get_NazwaPliku () { return NazwaPliku_PlikDoRysowania; }
+            std::string Get_NazwaPliku () const { return NazwaPliku_PlikDoRysowania; }
     
     /* Metody klasy ObiektGeom */
 

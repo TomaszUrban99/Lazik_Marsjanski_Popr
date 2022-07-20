@@ -27,7 +27,7 @@ void Macierz3D::MacierzRotacji(Wektor3D& KatyOrientacjiSt)
     Przeciążenie operatora mnożenia skalarnego trójwymiarowej 
     macierzy (Macierz3D) przez trójwymiarowy wektor (Wektor 3D) 
 */
-Wektor3D Macierz3D::operator*(Wektor3D Wektor2) const
+Wektor3D Macierz3D::operator*(const Wektor3D& Wektor2) const
 {
     Wektor3D Temp;
 
@@ -37,6 +37,6 @@ Wektor3D Macierz3D::operator*(Wektor3D Wektor2) const
         for (int j = 0; j < ROZMIAR; ++j){Suma += (*this)(i, j) * (Wektor2[j]);}
         Temp[i] = Suma;
     }
-    
+
     return Temp;
 }

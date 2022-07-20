@@ -2,15 +2,30 @@
 
 void Obiekt::DodajObiekt(   Wektor3D& PolozenieWzgledne,
                             Wektor3D& OrientacjaWzgledna,
-                            std::shared_ptr<ObiektGeom> NowyObiekt )
-{
-    NowyObiekt->Wez_Polozenie() = _Polozenie + PolozenieWzgledne; 
+                            ObiektGeom& NowyObiekt )
+{ 
+    NowyObiekt.Wez_Polozenie() = _Polozenie + PolozenieWzgledne;
                                 // Wyznaczenie bezwzględnego położenia
                                 // składowego obiektu
-    NowyObiekt->Wez_KatOrientacji() = _KatOrientacjiSt + OrientacjaWzgledna;
+
+    NowyObiekt.Wez_KatOrientacji() = _KatOrientacjiSt + OrientacjaWzgledna;
                                 // Wyznaczenie bezwględnego kąta orientacji
-    Lista_Skladowych_ObiektowGeom.push_back(NowyObiekt);
+    
+    std::shared_ptr<ObiektGeom> Wsk =  std::make_shared<ObiektGeom>();
+    *Wsk = NowyObiekt;
+    Lista_Skladowych_ObiektowGeom.push_back(Wsk);
                                 // Dodanie obiektu do listy obiektów składowych
+}
+
+bool Obiekt::Przelicz_I_Zapisz_Wierzcholki ()
+{
+
+    for (std::shared_ptr<ObiektGeom> Temp: Lista_Skladowych_ObiektowGeom)
+    {
+        (*Temp).Przelicz_i_Zapisz_Wierzcholki();
+    }
+
+    return true;
 }
 
 /* Przeciążenie operatora wyjścia */

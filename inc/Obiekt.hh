@@ -3,6 +3,7 @@
 
 #include <string>
 #include <list>
+#include <vector>
 #include <memory>
 #include "ObiektGeom.hh"
 #include "Wektor3D.hh"
@@ -21,8 +22,8 @@ class Obiekt
 
   /* Konstruktory i destruktory obiektu klasy Obiekt */
 
-  Obiekt(Wektor3D PoczatkowePolozenie, Wektor3D NowaSkala,
-            Wektor3D PoczatkowyKatOrientacji, std::string NowaNazwa )
+  Obiekt(Wektor3D& PoczatkowePolozenie, Wektor3D& NowaSkala,
+            Wektor3D& PoczatkowyKatOrientacji, std::string NowaNazwa )
     {
         _Polozenie = PoczatkowePolozenie;
         _Skala = NowaSkala;
@@ -85,7 +86,7 @@ class Obiekt
   /* atrybut: ListaSkladowych_ObiektowGeom */
 
     /* Uzyskanie dostepu do pola ListaSkladowych_ObiektowGeom */
-        std::list<std::shared_ptr<ObiektGeom>> Get_ListaObiektowSkladowych ()
+        std::list<std::shared_ptr<ObiektGeom>>& Get_ListaObiektowSkladowych ()
             { return Lista_Skladowych_ObiektowGeom; }
     
     /* Metody klasy Obiekt */
@@ -102,7 +103,12 @@ class Obiekt
     */
         void DodajObiekt(   Wektor3D& PolozenieWzgledne,
                             Wektor3D& OrientacjaWzgledna,
-                            std::shared_ptr<ObiektGeom> NowyObiekt );        
+                            ObiektGeom& NowyObiekt );
+
+    /*!
+        \brief Metoda wyliczająca aktualne współrzędne poszczególnych brył składowych
+    */
+        bool Przelicz_I_Zapisz_Wierzcholki ();  
 
 };
 

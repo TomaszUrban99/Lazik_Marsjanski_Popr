@@ -13,8 +13,8 @@ class SWektor {
 
   public:
   
-    SWektor() { for (STyp &Wsp: tab) Wsp = 0; }
-
+    SWektor() { for (STyp &Wsp: tab) Wsp = 0;}
+  
     virtual ~SWektor(){};
   
     STyp  operator [] (unsigned int Ind) const { return tab[Ind]; }
