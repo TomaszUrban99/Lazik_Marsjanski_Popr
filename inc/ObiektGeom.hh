@@ -156,6 +156,7 @@ class ObiektGeom
         \arg std::ostream& Output - strumień wyjściowy, do którego zapisywane będą wyliczone wartości współrzędnych
     */
     bool Przelicz_i_Zapisz_Wierzcholki ( std::istream& Input, std::ostream& Output);
+    
 };
 
 #endif

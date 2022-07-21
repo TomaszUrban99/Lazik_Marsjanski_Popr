@@ -4,6 +4,7 @@
 #include "Macierz3D.hh"
 #include "ObiektGeom.hh"
 #include "Obiekt.hh"
+#include "Lazik.hh"
 #include "PowierzchniaMarsa.hh"
 #include "lacze_do_gnuplota.hh"
 #include "Scena.hh"
@@ -28,7 +29,7 @@ int main()
   ObiektGeom Ob3 ( 2, Temp, Temp6, Skala, "Autobusik", "bryly_wzorcowe/szescian2.dat", "pliki_do_rysowania/Probka4");
   ObiektGeom Ob4 ( 3, Temp2, Temp, Skala, "Collere", "bryly_wzorcowe/szescian2.dat", "pliki_do_rysowania/Probka5");
   Obiekt OBB (Temp, Skala, Temp2, "Gender");
-  Obiekt OBB2 (Temp4, Skala, Temp, "Trysil");
+  Lazik OBB2 (Temp4, Skala, Temp, "Trysil");
   Scena Mars;
 
   cout << "Polozenie obiektow: " << endl;
@@ -64,9 +65,19 @@ int main()
   cout << Mars.Get_Lista().back()->Get_ListaObiektowSkladowych().front()->Get_NazwaPliku() << std::endl;
 
   Mars.Get_Lacze().Rysuj();
-  cout << "Pacnij cos"<< endl;
-  int i;
+  cout << "Podaj odleglosc na jaka ma sie przemiescic lazik: "<< endl;
+  double i;
   cin >> i;
+
+  OBB2.Zmien_OdlegloscDoPrzejechania(i);
+  OBB2.TranslacjLazika();
+
+  Mars.Get_Lacze().Rysuj();
+
+  cout << "Pacnij!!!" << endl;
+  cin >> i;
+
+
 
   /* __________ Test klasy ObiektGeom.hh _______________ */
 
