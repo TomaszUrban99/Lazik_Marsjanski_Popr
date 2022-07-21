@@ -17,15 +17,13 @@ void Obiekt::DodajObiekt(   Wektor3D& PolozenieWzgledne,
                                 // Dodanie obiektu do listy obiektów składowych
 }
 
-bool Obiekt::Przelicz_I_Zapisz_Wierzcholki ()
+void Obiekt::Przelicz_I_Zapisz_Wierzcholki ()
 {
-
     for (std::shared_ptr<ObiektGeom> Temp: Lista_Skladowych_ObiektowGeom)
-    {
-        (*Temp).Przelicz_i_Zapisz_Wierzcholki();
-    }
-
-    return true;
+       {
+           if(!((*Temp).Przelicz_i_Zapisz_Wierzcholki())) std::cout << "Bum!!" << std::endl;
+           std::cout << "Haha" << std::endl;
+       }
 }
 
 /* Przeciążenie operatora wyjścia */

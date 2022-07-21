@@ -22,6 +22,8 @@ class Obiekt
 
   /* Konstruktory i destruktory obiektu klasy Obiekt */
 
+  Obiekt() {};
+
   Obiekt(Wektor3D& PoczatkowePolozenie, Wektor3D& NowaSkala,
             Wektor3D& PoczatkowyKatOrientacji, std::string NowaNazwa )
     {
@@ -107,8 +109,10 @@ class Obiekt
 
     /*!
         \brief Metoda wyliczająca aktualne współrzędne poszczególnych brył składowych
+
+        Metoda wylicza współrzędne poszczególnych brył dla zadanego położenia obiektu.
     */
-        bool Przelicz_I_Zapisz_Wierzcholki ();  
+        void Przelicz_I_Zapisz_Wierzcholki ();  
 
 };
 
