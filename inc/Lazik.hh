@@ -34,7 +34,19 @@ class Lazik: public Obiekt
     
     /* Metody klasy Lazik */
 
-    /* Metoda przemieszczająca łazik na określoną odleglosc */
+    /*!
+        \brief Metoda przemieszczająca łazik na określoną odleglosc
+
+            Metoda TranslacjaLazika() pozwala na dokonanie translacji lazika na odleglosc
+        przechowywana w polu OdlegloscDoPrzejechania.
+            W pierwszej kolejnosci wyliczane są wartości poszczególnych wspólrzędnych
+        o jakie należy zwiększyć pola przechowujące położenie łazika na planszy. Przechowywane
+        są w pomocniczym obiekcie Wektor3D Wsp. 
+            Z racji tego, że ruch będzie translacyjny, następnym krokiem będzie dodanie do
+        wektor okeślającego położenie, wyznaczonego wcześniej wektora Wsp.
+
+        Przyjmuje się, że łazik może poruszać się wyłącznie na płaszczyżnie XY.
+    */
     void TranslacjLazika();
 };
 
