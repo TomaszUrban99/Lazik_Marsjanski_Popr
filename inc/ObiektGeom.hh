@@ -6,6 +6,11 @@
 #include "Wektor3D.hh"
 #include "Macierz3D.hh"
 
+/*!
+    \brief Typ wyliczeniowy klasyfikujący rodzaj poszczególnych obiektów geometrycznych
+*/
+enum Obiekt_ID { Obiekt_G, Obiekt_Kolo, Obiekt_Kadlub};
+
 class ObiektGeom
 {
     /* Atrybuty klasy ObiektGeom */
@@ -44,7 +49,10 @@ class ObiektGeom
         NazwaPliku_PlikDoRysowania = NazwaPlikuBrylaDoRysowania;
     }
 
-    ~ObiektGeom() = default;
+    virtual ~ObiektGeom() = default;
+
+    /* Identyfikacja klasy ObiektGeom */
+        virtual enum Obiekt_ID Wez_ID () { return Obiekt_G;}
 
     /* Interfejs klasy ObiektGeom */
 

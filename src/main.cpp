@@ -16,18 +16,35 @@ int Wektor3D::Current_Count = 0;
 
 int main()
 {
+  /* Zmienne do zapisywania ścieżek plikow z bryłami wzorcowymi */
+    const std::string Graniastotlup = "bryly_wzorcowe/graniastoslup6-OY.dat";
+    const std::string Szescian1 = "bryly_wzorcowe/szescian1.dat";
+
   Wektor3D Temp (30, 0, 0);
   Wektor3D Skala (10, 10, 10);
+  Wektor3D Skala2 (10, 10, 10);
   Wektor3D Temp2 (0, 0, 0);
   Wektor3D Temp3 (50, 0, 0);
   Wektor3D Temp4 (20, 20, 0);
   Wektor3D Temp5 (50, 20, 0);
-  Wektor3D Temp6 (30, 50, 0);
-  Macierz3D Macierz;
+  Wektor3D Temp6 (30, 50, 5);
+  Wektor3D KatOkr (0, 0, 0);
+
+  /* Zadeklarowanie obiektow */
+    /* Lazik 1 */
+      /* Kola */
+        ObiektGeom KoloPP ( 8, Temp2, Temp, Skala, "L1/PP", Graniastotlup, "pliki_do_rysowania/Lazik1/KoloPP.dat");
+        ObiektGeom KoloPL ( 8, Temp2, Temp, Skala, "L1/PL", Graniastotlup, "pliki_do_rysowania/Lazik1/KoloPL.dat");
+        ObiektGeom KoloTP ( 8, Temp2, Temp, Skala, "L1/TP", Graniastotlup, "pliki_do_rysowania/Lazik1/KoloTP.dat");
+        ObiektGeom KoloTL ( 8, Temp2, Temp, Skala, "L1/TL", Graniastotlup, "pliki_do_rysowania/Lazik1/KoloTL.dat");
+      /* Kadlub */
+        ObiektGeom Kadlub ( 3, Temp2, Temp, Skala, "L1/Kadlub", Szescian1, "pliki_do_rysowania/Lazik1/Kadlub.dat");
+      
   ObiektGeom Ob1 ( 3, Temp2, Temp, Skala, "Kostka", "bryly_wzorcowe/szescian1.dat","pliki_do_rysowania/Probka1");
   ObiektGeom Ob2 ( 8, Temp3, Temp4, Skala, "Kosteczka", "bryly_wzorcowe/szescian1.dat", "pliki_do_rysowania/Probka2");
   ObiektGeom Ob3 ( 2, Temp, Temp6, Skala, "Autobusik", "bryly_wzorcowe/szescian2.dat", "pliki_do_rysowania/Probka4");
   ObiektGeom Ob4 ( 3, Temp2, Temp, Skala, "Collere", "bryly_wzorcowe/szescian2.dat", "pliki_do_rysowania/Probka5");
+  ObiektGeom Ob5 ( 6, KatOkr, Temp5, Skala2, "Kolo", "bryly_wzorcowe/graniastoslup6-OY.dat", "pliki_do_rysowania/Probka6.dat");
   Obiekt OBB (Temp, Skala, Temp2, "Gender");
   Lazik OBB2 (Temp4, Skala, Temp, "Trysil");
   Scena Mars;
@@ -47,6 +64,7 @@ int main()
   OBB.DodajObiekt(Temp2, Temp4, Ob2);
   OBB2.DodajObiekt(Temp3, Temp4, Ob3);
   OBB2.DodajObiekt(Temp5, Temp, Ob4);
+  OBB2.DodajObiekt(Temp6, Temp2, Ob5);
 
   OBB.Przelicz_I_Zapisz_Wierzcholki();
   OBB2.Przelicz_I_Zapisz_Wierzcholki();
@@ -63,6 +81,7 @@ int main()
 
   cout << "Lista obiektow dla tego drugiego: " << std::endl;
   cout << Mars.Get_Lista().back()->Get_ListaObiektowSkladowych().front()->Get_NazwaPliku() << std::endl;
+  cout << Mars.Get_Lista().back()->Get_ListaObiektowSkladowych().back()->Get_NazwaPliku() << std::endl;
 
   Mars.Get_Lacze().Rysuj();
   cout << "Podaj odleglosc na jaka ma sie przemiescic lazik: "<< endl;
