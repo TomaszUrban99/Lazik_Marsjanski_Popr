@@ -117,12 +117,18 @@ class Obiekt
 
 };
 
+/*!
+    \brief Szablon metody dodającej składowe elemtny do listy obiektów obiektu typu Obiekt.
+*/
 template <typename T> void Obiekt::DodajObiekt(   Wektor3D& PolozenieWzgledne,
                             Wektor3D& OrientacjaWzgledna,
                             T& NowyObiekt )
 {     
     std::shared_ptr<T> Wsk =  std::make_shared<T>();
-        *Wsk = NowyObiekt;
+        // Deklaracja wskaźnika na obiekt określony typem T
+    *Wsk = NowyObiekt;
+        // Przypisanie nowo utworzonego obiektu do stworzonego
+        // wskaźnika współdzielonego
     
     Wsk->Wez_Polozenie() = _Polozenie + PolozenieWzgledne;
                                 // Wyznaczenie bezwzględnego położenia
@@ -133,6 +139,7 @@ template <typename T> void Obiekt::DodajObiekt(   Wektor3D& PolozenieWzgledne,
                                 // Dodanie obiektu do listy obiektów składowych
 
     Lista_Skladowych_ObiektowGeom.push_back(Wsk);
+        // Umieszczenie obiektu na liście obiektów składowych
 }
 
 /* Przeciążenia operatorów */

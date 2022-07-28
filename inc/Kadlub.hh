@@ -9,7 +9,7 @@ class Kadlub: public ObiektGeom {
 
     /* Konstruktory klasy Kadlub */
 
-        Kadlub () {}
+        Kadlub () {};
 
         Kadlub ( int Kolor, Wektor3D& KatPoczatkowy,
                     Wektor3D& PolozeniePoczatkowe, Wektor3D& SkalaPoczatkowa,
@@ -20,7 +20,7 @@ class Kadlub: public ObiektGeom {
                     Kolor, KatPoczatkowy, PolozeniePoczatkowe, SkalaPoczatkowa,
                     NazwaElementuSkladowego, NazwaPlikuBrylaWzorcowa,
                     NazwaPlikuBrylaDoRysowania )
-        {}
+        {};
 
         virtual ~Kadlub () {};
 

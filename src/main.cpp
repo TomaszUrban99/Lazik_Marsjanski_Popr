@@ -25,56 +25,44 @@ int main()
   Wektor3D Temp (30, 0, 0);
   Wektor3D Skala (10, 10, 10);
   Wektor3D Skala2 (10, 10, 10);
+  Wektor3D Skala3 (30, 10, 10);
   Wektor3D Temp2 (0, 0, 0);
   Wektor3D Temp3 (50, 0, 0);
   Wektor3D Temp4 (20, 20, 0);
   Wektor3D Temp5 (50, 20, 0);
   Wektor3D Temp6 (30, 50, 5);
   Wektor3D KatOkr (0, 0, 0);
+  Wektor3D Temp7 (30, 30, 5);
+
+  /* Wektory do opisu wzglednych polozen */
+      Wektor3D KoloPrawePrzednie ( 10, 10, 0);
+      Wektor3D KoloLewePrzednie ( 10, -10, 0);
+      Wektor3D KoloPraweTylne (-10, 10, 0);
+      Wektor3D KoloLeweTylne (-10, -10, 0);
+      Wektor3D KadlubPol (0, 0, 0);
 
   /* Zadeklarowanie obiektow */
     /* Lazik 1 */
-      /* Kola */
-        Kolo KoloPP ( 8, Temp2, Temp, Skala, "L1/PP", Graniastotlup, "pliki_do_rysowania/Lazik1/KoloPP.dat");
-        Kolo KoloPL ( 8, Temp2, Temp, Skala, "L1/PL", Graniastotlup, "pliki_do_rysowania/Lazik1/KoloPL.dat");
-        Kolo KoloTP ( 8, Temp2, Temp, Skala, "L1/TP", Graniastotlup, "pliki_do_rysowania/Lazik1/KoloTP.dat");
-        Kolo KoloTL ( 8, Temp2, Temp, Skala, "L1/TL", Graniastotlup, "pliki_do_rysowania/Lazik1/KoloTL.dat");
-      /* Kadlub */
-        Kadlub Kadlub2 ( 3, Temp2, Temp, Skala, "L1/Kadlub", Szescian1, "pliki_do_rysowania/Lazik1/Kadlub.dat");
-      
-  Kadlub Ob1 ( 3, Temp2, Temp, Skala, "Kostka", "bryly_wzorcowe/szescian1.dat","pliki_do_rysowania/Probka1");
-  Kadlub Ob2 ( 8, Temp3, Temp4, Skala, "Kosteczka", "bryly_wzorcowe/szescian1.dat", "pliki_do_rysowania/Probka2");
-  Kadlub Ob3 ( 2, Temp, Temp6, Skala, "Autobusik", "bryly_wzorcowe/szescian2.dat", "pliki_do_rysowania/Probka4");
-  Kadlub Ob4 ( 3, Temp2, Temp, Skala, "Collere", "bryly_wzorcowe/szescian2.dat", "pliki_do_rysowania/Probka5");
-  Kolo Ob5 ( 6, KatOkr, Temp5, Skala2, "Kolo", "bryly_wzorcowe/graniastoslup6-OY.dat", "pliki_do_rysowania/Probka6.dat");
-  Obiekt OBB (Temp, Skala, Temp2, "Gender");
-  Lazik OBB2 (Temp4, Skala, Temp, "Trysil");
+      Lazik Trysil (Temp7, Skala, Temp, "Trysil");
+        /* Kola */
+          Kolo KoloPP ( 8, Temp2, Temp, Skala, "L1/PP", Graniastotlup, "pliki_do_rysowania/Lazik1/KoloPP.dat");
+                Trysil.DodajObiekt ( KoloPrawePrzednie, KatOkr, KoloPP);
+          Kolo KoloPL ( 8, Temp2, Temp, Skala, "L1/PL", Graniastotlup, "pliki_do_rysowania/Lazik1/KoloPL.dat");
+                Trysil.DodajObiekt ( KoloLewePrzednie, KatOkr, KoloPL);
+          Kolo KoloTP ( 8, Temp2, Temp, Skala, "L1/TP", Graniastotlup, "pliki_do_rysowania/Lazik1/KoloTP.dat");
+                Trysil.DodajObiekt ( KoloPraweTylne, KatOkr, KoloTP);
+          Kolo KoloTL ( 8, Temp2, Temp, Skala, "L1/TL", Graniastotlup, "pliki_do_rysowania/Lazik1/KoloTL.dat");
+                Trysil.DodajObiekt ( KoloLeweTylne, KatOkr, KoloTL);
+        /* Kadlub */
+          Kadlub Kadlub2 ( 3, Temp2, Temp, Skala3, "L1/Kadlub", Szescian1, "pliki_do_rysowania/Lazik1/Kadlub.dat");
+                Trysil.DodajObiekt ( KadlubPol, KadlubPol, Kadlub2);
   Scena Mars;
 
-  cout << "Polozenie obiektow: " << endl;
-  cout << Ob1.Wez_Polozenie() << endl;
-  cout << Ob2.Wez_Polozenie() << endl;
-
-  cout << "Polozenie glownego obiektu: " << endl;
-  cout << OBB.Get_Polozenie() << endl;
-
-  
-
-  cout << "Lista obiektow skladowych: " << endl;
-  cout << OBB.Get_ListaObiektowSkladowych() << endl;
-  OBB.DodajObiekt(Temp, Temp2, Ob1);
-  OBB.DodajObiekt(Temp2, Temp4, Ob2);
-  OBB2.DodajObiekt(Temp3, Temp4, Ob3);
-  OBB2.DodajObiekt(Temp5, Temp, Ob4);
-  OBB2.DodajObiekt(Temp6, Temp2, Ob5);
-
-  OBB.Przelicz_I_Zapisz_Wierzcholki();
-  OBB2.Przelicz_I_Zapisz_Wierzcholki();
+  Trysil.Przelicz_I_Zapisz_Wierzcholki();
 
   Mars.Inicjalizuj_Lacze();
   Dodaj_Do_ListyRysowania(Mars.Get_Lacze());
-  Mars.Dodaj_Do_Listy_Scena(OBB);
-  Mars.Dodaj_Do_Listy_Scena(OBB2);
+  Mars.Dodaj_Do_Listy_Scena(Trysil);
   Mars.Dodaj_Do_ListyRysowania();
   cout << "Mars" << std::endl;
 
@@ -89,9 +77,6 @@ int main()
   cout << "Podaj odleglosc na jaka ma sie przemiescic lazik: "<< endl;
   double i;
   cin >> i;
-
-  OBB2.Zmien_OdlegloscDoPrzejechania(i);
-  OBB2.TranslacjLazika();
 
   Mars.Get_Lacze().Rysuj();
 
