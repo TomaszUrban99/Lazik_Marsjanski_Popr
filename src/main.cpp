@@ -8,6 +8,8 @@
 #include "PowierzchniaMarsa.hh"
 #include "lacze_do_gnuplota.hh"
 #include "Scena.hh"
+#include "Kolo.hh"
+#include "Kadlub.hh"
 
 using namespace std;
 
@@ -33,18 +35,18 @@ int main()
   /* Zadeklarowanie obiektow */
     /* Lazik 1 */
       /* Kola */
-        ObiektGeom KoloPP ( 8, Temp2, Temp, Skala, "L1/PP", Graniastotlup, "pliki_do_rysowania/Lazik1/KoloPP.dat");
-        ObiektGeom KoloPL ( 8, Temp2, Temp, Skala, "L1/PL", Graniastotlup, "pliki_do_rysowania/Lazik1/KoloPL.dat");
-        ObiektGeom KoloTP ( 8, Temp2, Temp, Skala, "L1/TP", Graniastotlup, "pliki_do_rysowania/Lazik1/KoloTP.dat");
-        ObiektGeom KoloTL ( 8, Temp2, Temp, Skala, "L1/TL", Graniastotlup, "pliki_do_rysowania/Lazik1/KoloTL.dat");
+        Kolo KoloPP ( 8, Temp2, Temp, Skala, "L1/PP", Graniastotlup, "pliki_do_rysowania/Lazik1/KoloPP.dat");
+        Kolo KoloPL ( 8, Temp2, Temp, Skala, "L1/PL", Graniastotlup, "pliki_do_rysowania/Lazik1/KoloPL.dat");
+        Kolo KoloTP ( 8, Temp2, Temp, Skala, "L1/TP", Graniastotlup, "pliki_do_rysowania/Lazik1/KoloTP.dat");
+        Kolo KoloTL ( 8, Temp2, Temp, Skala, "L1/TL", Graniastotlup, "pliki_do_rysowania/Lazik1/KoloTL.dat");
       /* Kadlub */
-        ObiektGeom Kadlub ( 3, Temp2, Temp, Skala, "L1/Kadlub", Szescian1, "pliki_do_rysowania/Lazik1/Kadlub.dat");
+        Kadlub Kadlub2 ( 3, Temp2, Temp, Skala, "L1/Kadlub", Szescian1, "pliki_do_rysowania/Lazik1/Kadlub.dat");
       
-  ObiektGeom Ob1 ( 3, Temp2, Temp, Skala, "Kostka", "bryly_wzorcowe/szescian1.dat","pliki_do_rysowania/Probka1");
-  ObiektGeom Ob2 ( 8, Temp3, Temp4, Skala, "Kosteczka", "bryly_wzorcowe/szescian1.dat", "pliki_do_rysowania/Probka2");
-  ObiektGeom Ob3 ( 2, Temp, Temp6, Skala, "Autobusik", "bryly_wzorcowe/szescian2.dat", "pliki_do_rysowania/Probka4");
-  ObiektGeom Ob4 ( 3, Temp2, Temp, Skala, "Collere", "bryly_wzorcowe/szescian2.dat", "pliki_do_rysowania/Probka5");
-  ObiektGeom Ob5 ( 6, KatOkr, Temp5, Skala2, "Kolo", "bryly_wzorcowe/graniastoslup6-OY.dat", "pliki_do_rysowania/Probka6.dat");
+  Kadlub Ob1 ( 3, Temp2, Temp, Skala, "Kostka", "bryly_wzorcowe/szescian1.dat","pliki_do_rysowania/Probka1");
+  Kadlub Ob2 ( 8, Temp3, Temp4, Skala, "Kosteczka", "bryly_wzorcowe/szescian1.dat", "pliki_do_rysowania/Probka2");
+  Kadlub Ob3 ( 2, Temp, Temp6, Skala, "Autobusik", "bryly_wzorcowe/szescian2.dat", "pliki_do_rysowania/Probka4");
+  Kadlub Ob4 ( 3, Temp2, Temp, Skala, "Collere", "bryly_wzorcowe/szescian2.dat", "pliki_do_rysowania/Probka5");
+  Kolo Ob5 ( 6, KatOkr, Temp5, Skala2, "Kolo", "bryly_wzorcowe/graniastoslup6-OY.dat", "pliki_do_rysowania/Probka6.dat");
   Obiekt OBB (Temp, Skala, Temp2, "Gender");
   Lazik OBB2 (Temp4, Skala, Temp, "Trysil");
   Scena Mars;

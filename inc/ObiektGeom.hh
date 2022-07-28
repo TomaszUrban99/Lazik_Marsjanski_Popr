@@ -31,7 +31,7 @@ class ObiektGeom
 
     /* Konstruktory i destruktory klasy ObiektGeom */
 
-    ObiektGeom () {}
+    ObiektGeom () = default;
 
     ObiektGeom ( int Kolor, Wektor3D& KatPoczatkowy,
                     Wektor3D& PolozeniePoczatkowe, Wektor3D& SkalaPoczatkowa,
@@ -49,10 +49,12 @@ class ObiektGeom
         NazwaPliku_PlikDoRysowania = NazwaPlikuBrylaDoRysowania;
     }
 
+    ObiektGeom (const ObiektGeom&) = default;
+
     virtual ~ObiektGeom() = default;
 
     /* Identyfikacja klasy ObiektGeom */
-        virtual enum Obiekt_ID Wez_ID () { return Obiekt_G;}
+        virtual enum Obiekt_ID Wez_ID () const = 0;
 
     /* Interfejs klasy ObiektGeom */
 

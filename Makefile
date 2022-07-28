@@ -18,8 +18,8 @@ ${TRGDIR}:
 ${OBJ}:
 	mkdir -p ${OBJ}
 
-${TRGDIR}/test_lazikap: ${OBJ}/main.o ${OBJ}/ObiektGeom.o ${OBJ}/Wektor3D.o ${OBJ}/Macierz3D.o ${OBJ}/OperacjeMat.o ${OBJ}/Obiekt.o ${OBJ}/PowierzchniaMarsa.o ${OBJ}/GNUPlot.o ${OBJ}/Scena.o ${OBJ}/Lazik.o
-	g++ -o ${TRGDIR}/test_lazikap ${OBJ}/main.o ${OBJ}/ObiektGeom.o ${OBJ}/Wektor3D.o ${OBJ}/Macierz3D.o ${OBJ}/OperacjeMat.o ${OBJ}/Obiekt.o ${OBJ}/PowierzchniaMarsa.o ${OBJ}/GNUPlot.o ${OBJ}/Scena.o ${OBJ}/Lazik.o
+${TRGDIR}/test_lazikap: ${OBJ}/main.o ${OBJ}/ObiektGeom.o ${OBJ}/Wektor3D.o ${OBJ}/Macierz3D.o ${OBJ}/OperacjeMat.o ${OBJ}/Obiekt.o ${OBJ}/PowierzchniaMarsa.o ${OBJ}/GNUPlot.o ${OBJ}/Scena.o ${OBJ}/Lazik.o ${OBJ}/Kadlub.o ${OBJ}/Kolo.o
+	g++ -o ${TRGDIR}/test_lazikap ${OBJ}/main.o ${OBJ}/ObiektGeom.o ${OBJ}/Wektor3D.o ${OBJ}/Macierz3D.o ${OBJ}/OperacjeMat.o ${OBJ}/Obiekt.o ${OBJ}/PowierzchniaMarsa.o ${OBJ}/GNUPlot.o ${OBJ}/Scena.o ${OBJ}/Lazik.o ${OBJ}/Kadlub.o ${OBJ}/Kolo.o
 
 ${OBJ}/main.o: src/main.cpp ${PODSTINC}/Wektor3D.hh ${PODSTINC}/Macierz3D.hh
 	g++ ${CXXFLAGS} -o ${OBJ}/main.o src/main.cpp
@@ -29,6 +29,12 @@ ${OBJ}/Scena.o: src/Scena.cpp inc/Obiekt.hh inc/lacze_do_gnuplota.hh inc/Powierz
 
 ${OBJ}/Lazik.o: src/Lazik.cpp
 	g++ ${CXXFLAGS} -o ${OBJ}/Lazik.o src/Lazik.cpp
+
+${OBJ}/Kolo.o: src/Kolo.cpp inc/ObiektGeom.hh
+	g++ ${CXXFLAGS} -o ${OBJ}/Kolo.o src/Kolo.cpp
+
+${OBJ}/Kadlub.o: src/Kadlub.cpp inc/ObiektGeom.hh
+	g++ ${CXXFLAGS} -o ${OBJ}/Kadlub.o src/Kadlub.cpp
 
 ${OBJ}/Obiekt.o: src/Obiekt.cpp inc/ObiektGeom.hh
 	g++ ${CXXFLAGS} -o ${OBJ}/Obiekt.o src/Obiekt.cpp

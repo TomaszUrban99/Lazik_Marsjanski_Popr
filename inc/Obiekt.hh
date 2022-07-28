@@ -103,9 +103,10 @@ class Obiekt
         \param std::shared_ptr<ObiektGeom> NowyObiekt - wskaźnik na obiekt klasy ObiektGeom, ktory
             zostać dodany do listy obiektow skladowych
     */
+   template <typename T>
         void DodajObiekt(   Wektor3D& PolozenieWzgledne,
                             Wektor3D& OrientacjaWzgledna,
-                            ObiektGeom& NowyObiekt );
+                            T& NowyObiekt );
 
     /*!
         \brief Metoda wyliczająca aktualne współrzędne poszczególnych brył składowych
@@ -115,6 +116,24 @@ class Obiekt
         void Przelicz_I_Zapisz_Wierzcholki ();  
 
 };
+
+template <typename T> void Obiekt::DodajObiekt(   Wektor3D& PolozenieWzgledne,
+                            Wektor3D& OrientacjaWzgledna,
+                            T& NowyObiekt )
+{     
+    std::shared_ptr<T> Wsk =  std::make_shared<T>();
+        *Wsk = NowyObiekt;
+    
+    Wsk->Wez_Polozenie() = _Polozenie + PolozenieWzgledne;
+                                // Wyznaczenie bezwzględnego położenia
+                                // składowego obiektu
+
+    Wsk->Wez_KatOrientacji() = _KatOrientacjiSt + OrientacjaWzgledna;
+                                // Wyznaczenie bezwględnego kąta orientacji
+                                // Dodanie obiektu do listy obiektów składowych
+
+    Lista_Skladowych_ObiektowGeom.push_back(Wsk);
+}
 
 /* Przeciążenia operatorów */
 

@@ -1,17 +1,17 @@
-#ifndef KOLO_HH
-#define KOLO_HH
+#ifndef KADLUB_HH
+#define KADLUB_HH
 
 #include "ObiektGeom.hh"
 
-class Kolo: public ObiektGeom {
-
+class Kadlub: public ObiektGeom {
+    
     public:
 
-    /* Konstruktory klasy Kolo */
+    /* Konstruktory klasy Kadlub */
 
-        Kolo () {}
+        Kadlub () {}
 
-        Kolo ( int Kolor, Wektor3D& KatPoczatkowy,
+        Kadlub ( int Kolor, Wektor3D& KatPoczatkowy,
                     Wektor3D& PolozeniePoczatkowe, Wektor3D& SkalaPoczatkowa,
                     std::string NazwaElementuSkladowego, 
                     std::string NazwaPlikuBrylaWzorcowa,
@@ -22,12 +22,9 @@ class Kolo: public ObiektGeom {
                     NazwaPlikuBrylaDoRysowania )
         {}
 
-        virtual ~Kolo () {};
-    
-    /*!
-        \brief Metoda zwracajaca identyfiaktor typu obiektu.
-    */
-        virtual enum Obiekt_ID Wez_ID () const override { return Obiekt_Kolo;}
+        virtual ~Kadlub () {};
+
+    virtual enum Obiekt_ID Wez_ID () const override { return Obiekt_Kadlub;}
 };
 
 #endif
