@@ -68,14 +68,11 @@ int main()
   Dodaj_Do_ListyRysowania(Mars.Get_Lacze());
   Mars.Dodaj_Do_Listy_Scena(Trysil);
   Mars.Dodaj_Do_ListyRysowania();
-  cout << "Mars" << std::endl;
 
-  cout << "Lista obiektow na scenie: " << std::endl;
-  cout << Mars.Get_Lista() << std::endl;
+  Mars.Change_ActiveLazik(1);
 
-  cout << "Lista obiektow dla tego drugiego: " << std::endl;
-  cout << Mars.Get_Lista().back()->Get_ListaObiektowSkladowych().front()->Get_NazwaPliku() << std::endl;
-  cout << Mars.Get_Lista().back()->Get_ListaObiektowSkladowych().back()->Get_NazwaPliku() << std::endl;
+  cout << "Nazwa aktywnego lazika: " << endl;
+  cout << Mars.Get_ActiveLazik()->Get_NazwaObiektu() << endl;
 
   Mars.Get_Lacze().Rysuj();
   cout << "Podaj odleglosc na jaka ma sie przemiescic lazik: "<< endl;
@@ -93,10 +90,19 @@ int main()
     {
       case 'f' :
       {
-        
+        cout << "Podaj odleglosc do przejechania " << endl;
+        cin >> i;
+
+        Mars.Get_ActiveLazik()->Zmien_OdlegloscDoPrzejechania(i);
+        Mars.Get_ActiveLazik()->TranslacjLazika();
+        Mars.Get_Lacze().Rysuj();
       }
       break;
     }
+
+    cout << "What do you want to do?" << endl;
+    cout << "f - translate Lazik" << endl;
+    cin >> Command [0];
   }
 
 

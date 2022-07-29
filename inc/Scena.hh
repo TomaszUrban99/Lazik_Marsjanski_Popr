@@ -5,14 +5,17 @@
 #include <memory>
 
 #include "Obiekt.hh"
+#include "Lazik.hh"
 #include "PowierzchniaMarsa.hh"
 #include "lacze_do_gnuplota.hh"
 
 class Scena {
 
+    std::shared_ptr<Lazik> _ActiveLazik;
+        // Shared pointer to the currently active Lazik
     std::list<std::shared_ptr<Obiekt>> Lista_Obiektow_Na_Scenie;
         // Lista wskaźników współdzielonych na obiekty, które mają być wyświetlane na scenie
-    PzG::LaczeDoGNUPlota Lacze;
+    PzG::LaczeDoGNUPlota _Lacze;
         // Obiekt klasy LaczeDoGNUPlota stanowiący interfejsc z programem GNUPlot. Klasa została
         // zadeklarowana w pliku nagłówkowym lacze_do_gnuplota.hh
 
@@ -20,8 +23,14 @@ class Scena {
 
     /* Interfejs klasy Scena */
 
+    /* Aktywny lazik */
+        std::shared_ptr<Lazik> Get_ActiveLazik () { return _ActiveLazik; }
+
+        /* Change _ActiveLazik */
+        void Change_ActiveLazik ( uint Numer_Lazika);
+
     /* Lacze do GNUPlota */
-        PzG::LaczeDoGNUPlota& Get_Lacze () { return Lacze; }
+        PzG::LaczeDoGNUPlota& Get_Lacze () { return _Lacze; }
     
     /* Lista obiektow na scenie */
         std::list<std::shared_ptr<Obiekt>>& Get_Lista ()
