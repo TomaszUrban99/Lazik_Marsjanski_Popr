@@ -1,9 +1,9 @@
 #include "Obiekt.hh"
 
-void Obiekt::Przelicz_I_Zapisz_Wierzcholki ()
+void Obiekt::Count_and_Save_Cusps ()
 {
     for (std::shared_ptr<ObiektGeom> Temp: Lista_Skladowych_ObiektowGeom)
-        (*Temp).Przelicz_i_Zapisz_Wierzcholki();
+        Temp->Count_and_Save_Cusps(_RotationMatrix, _Polozenie);
 }
 
 /* Przeciążenie operatora wyjścia */

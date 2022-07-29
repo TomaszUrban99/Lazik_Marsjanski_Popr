@@ -15,6 +15,7 @@ using namespace std;
 
 int Wektor3D::Count = 0;
 int Wektor3D::Current_Count = 0;
+std::string Obiekt::_TempFileCusps = "pliki_do_rysowania/Temp.dat";
 
 int main()
 {
@@ -40,6 +41,7 @@ int main()
       Wektor3D KoloPraweTylne (-10, 10, 0);
       Wektor3D KoloLeweTylne (-10, -10, 0);
       Wektor3D KadlubPol (0, 0, 0);
+      Wektor3D KatOkr2 (20, 50, 0);
 
   /* Zadeklarowanie obiektow */
     /* Lazik 1 */
@@ -58,7 +60,7 @@ int main()
                 Trysil.DodajObiekt ( KadlubPol, KadlubPol, Kadlub2);
   Scena Mars;
 
-  Trysil.Przelicz_I_Zapisz_Wierzcholki();
+  Trysil.Count_and_Save_Cusps();
 
   Mars.Inicjalizuj_Lacze();
   Dodaj_Do_ListyRysowania(Mars.Get_Lacze());

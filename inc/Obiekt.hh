@@ -15,7 +15,11 @@ class Obiekt
   Wektor3D _Skala;
   Wektor3D _KatOrientacjiSt;
 
+  Macierz3D _RotationMatrix;
+
   std::string _NazwaObiektu;
+  static std::string _TempFileCusps;
+    // Name of the temporary file
   std::list<std::shared_ptr<ObiektGeom>> Lista_Skladowych_ObiektowGeom;
 
   public:
@@ -30,6 +34,8 @@ class Obiekt
         _Polozenie = PoczatkowePolozenie;
         _Skala = NowaSkala;
         _KatOrientacjiSt = PoczatkowyKatOrientacji;
+        _RotationMatrix.MacierzRotacji(_KatOrientacjiSt);
+
         _NazwaObiektu = NowaNazwa;
     }
 
@@ -113,7 +119,7 @@ class Obiekt
 
         Metoda wylicza współrzędne poszczególnych brył dla zadanego położenia obiektu.
     */
-        void Przelicz_I_Zapisz_Wierzcholki ();  
+        void Count_and_Save_Cusps ();  
 
 };
 
@@ -130,13 +136,19 @@ template <typename T> void Obiekt::DodajObiekt(   Wektor3D& PolozenieWzgledne,
         // Przypisanie nowo utworzonego obiektu do stworzonego
         // wskaźnika współdzielonego
     
-    Wsk->Wez_Polozenie() = _Polozenie + PolozenieWzgledne;
+    Wsk->Wez_Polozenie() = PolozenieWzgledne;
                                 // Wyznaczenie bezwzględnego położenia
                                 // składowego obiektu
+    
+    std::cout << "Nazwa elementu: " << Wsk->Get_NazwaElementuSkladowego() << std::endl;
+    std::cout << Wsk->Wez_KatOrientacji() << std:: endl;
 
-    Wsk->Wez_KatOrientacji() = _KatOrientacjiSt + OrientacjaWzgledna;
+    Wsk->Wez_KatOrientacji() = OrientacjaWzgledna;
                                 // Wyznaczenie bezwględnego kąta orientacji
-                                // Dodanie obiektu do listy obiektów składowych
+                                // Dodanie obiektu do listy obiektów składowychs
+    
+    Wsk->Change_RotationMatrix();
+    std::cout << Wsk->Wez_KatOrientacji() << std::endl;
 
     Lista_Skladowych_ObiektowGeom.push_back(Wsk);
         // Umieszczenie obiektu na liście obiektów składowych

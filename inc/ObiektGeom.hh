@@ -78,7 +78,14 @@ class ObiektGeom
                 { KatOrientacji = NowyKatOrientacjiSt; }
             void Zmien_KatOrientacji (const Wektor3D NowyKatOrientacjiSt)
                 { KatOrientacji = NowyKatOrientacjiSt; }
-    
+        
+        /*  Rotation matrix - access */
+            Macierz3D& Get_RotationMatrix () { return MacierzRotacji; }
+            Macierz3D Get_RotationMatrix () const { return MacierzRotacji; }
+        
+        /* Rotation matrix- value change */
+            void Change_RotationMatrix () { MacierzRotacji.MacierzRotacji(KatOrientacji);}
+        
     /* Polozenie */
 
         /* Dostep do wartosci/referencji */
@@ -166,6 +173,11 @@ class ObiektGeom
         \arg std::ostream& Output - strumień wyjściowy, do którego zapisywane będą wyliczone wartości współrzędnych
     */
     bool Przelicz_i_Zapisz_Wierzcholki ( std::istream& Input, std::ostream& Output);
+
+    bool Count_and_Save_Cusps ( Macierz3D& RotationMatrix, Wektor3D& Location);
+
+    bool Count_and_Save_Cusps ( Macierz3D& RotationMatrix, Wektor3D& Location,
+                                std::istream& Input, std::ostream& Output );
     
 };
 
