@@ -6,10 +6,10 @@
 */
 bool ObiektGeom::Przelicz_i_Zapisz_Wierzcholki()
 {
-    std::ifstream Input (NazwaPliku_BrylaWzorcowa); // Deklaracja i otwarcie strumienia wejściowego
+    std::ifstream Input (_NazwaPliku_BrylaWzorcowa); // Deklaracja i otwarcie strumienia wejściowego
         if(Input.fail()) return false; // Sprawdzenie poprawnosci otwarcia strumienia wejsciowego
     
-    std::ofstream Output (NazwaPliku_PlikDoRysowania);
+    std::ofstream Output (_NazwaPliku_PlikDoRysowania);
         if(Output.fail()) return false;
 
     if(Przelicz_i_Zapisz_Wierzcholki(Input, Output)) return true;
@@ -31,7 +31,7 @@ bool ObiektGeom::Przelicz_i_Zapisz_Wierzcholki(std::istream& Input, std::ostream
         Input >> WspWierz; // Pobranie współrzednych jednego wierzcholka z pliku z bryłą wzorcową
             if(Input.fail()) return false;
 
-        WspWierz = MacierzRotacji * ( Skala * WspWierz ) + Polozenie;
+        WspWierz = _MacierzRotacji * ( _Skala * WspWierz ) + _Polozenie;
             // Wyliczenie nowych współrzędnych
         
         Output << WspWierz << std::endl; // Zapis współrzędnych do pliku, z którego będzie rysował GNUplot
@@ -54,10 +54,10 @@ bool ObiektGeom::Przelicz_i_Zapisz_Wierzcholki(std::istream& Input, std::ostream
 
 bool ObiektGeom::Count_and_Save_Cusps(Macierz3D& RotationMatrix, Wektor3D& Location)
 {
-    std::ifstream Input (NazwaPliku_BrylaWzorcowa);
+    std::ifstream Input (_NazwaPliku_BrylaWzorcowa);
         if (Input.fail()) return false;
 
-    std::ofstream Output (NazwaPliku_PlikDoRysowania);
+    std::ofstream Output (_NazwaPliku_PlikDoRysowania);
         if (Output.fail()) return false;
     
     if (Count_and_Save_Cusps(RotationMatrix, Location, Input, Output)) return true;
@@ -76,14 +76,10 @@ bool ObiektGeom::Count_and_Save_Cusps(Macierz3D& RotationMatrix, Wektor3D& Locat
         Input >> LineCoordinates; // Pobranie współrzednych jednego wierzcholka z pliku z bryłą wzorcową
             if(Input.fail()) return false;
 
-        LineCoordinates = MacierzRotacji * ( Skala * LineCoordinates ) + Polozenie;
+        LineCoordinates = _MacierzRotacji * ( _Skala * LineCoordinates ) + _Polozenie;
             // Wyliczenie nowych współrzędnych
-        
-        std::cout << LineCoordinates << std::endl;
 
         LineCoordinates = RotationMatrix * LineCoordinates + Location;
-        
-        std::cout << LineCoordinates << std::endl;
 
         Output << LineCoordinates << std::endl; // Zapis współrzędnych do pliku, z którego będzie rysował GNUplot
             if(Output.fail()) return false;

@@ -17,15 +17,15 @@ class ObiektGeom
 
     int KolorID;
     
-    Wektor3D KatOrientacji;
-    Wektor3D Polozenie;
-    Wektor3D Skala;
+    Wektor3D _KatOrientacji;
+    Wektor3D _Polozenie;
+    Wektor3D _Skala;
 
-    Macierz3D MacierzRotacji;
+    Macierz3D _MacierzRotacji;
 
-    std::string Nazwa_ElementuSkladowego;
-    std::string NazwaPliku_BrylaWzorcowa;
-    std::string NazwaPliku_PlikDoRysowania;
+    std::string _Nazwa_ElementuSkladowego;
+    std::string _NazwaPliku_BrylaWzorcowa;
+    std::string _NazwaPliku_PlikDoRysowania;
 
     public:
 
@@ -40,13 +40,13 @@ class ObiektGeom
                     std::string NazwaPlikuBrylaDoRysowania )
     {
         KolorID = Kolor;
-        KatOrientacji = KatPoczatkowy;
-        MacierzRotacji.MacierzRotacji(KatOrientacji);
-        Polozenie = PolozeniePoczatkowe;
-        Skala = SkalaPoczatkowa;
-        Nazwa_ElementuSkladowego = NazwaElementuSkladowego;
-        NazwaPliku_BrylaWzorcowa = NazwaPlikuBrylaWzorcowa;
-        NazwaPliku_PlikDoRysowania = NazwaPlikuBrylaDoRysowania;
+        _KatOrientacji = KatPoczatkowy;
+        _MacierzRotacji.MacierzRotacji(_KatOrientacji);
+        _Polozenie = PolozeniePoczatkowe;
+        _Skala = SkalaPoczatkowa;
+        _Nazwa_ElementuSkladowego = NazwaElementuSkladowego;
+        _NazwaPliku_BrylaWzorcowa = NazwaPlikuBrylaWzorcowa;
+        _NazwaPliku_PlikDoRysowania = NazwaPlikuBrylaDoRysowania;
     }
 
     ObiektGeom (const ObiektGeom&) = default;
@@ -70,67 +70,67 @@ class ObiektGeom
     /* Kat Orientacji */
         
         /* Dostep do wartosci/referencji */
-            Wektor3D& Wez_KatOrientacji () { return KatOrientacji;}
-            Wektor3D Wez_KatOrientacji () const { return KatOrientacji;}
+            Wektor3D& Wez_KatOrientacji () { return _KatOrientacji;}
+            Wektor3D Wez_KatOrientacji () const { return _KatOrientacji;}
         
         /* Zmiana wartosci pola */
             void Zmien_KatOrientacji (Wektor3D& NowyKatOrientacjiSt)
-                { KatOrientacji = NowyKatOrientacjiSt; }
+                { _KatOrientacji = NowyKatOrientacjiSt; }
             void Zmien_KatOrientacji (const Wektor3D NowyKatOrientacjiSt)
-                { KatOrientacji = NowyKatOrientacjiSt; }
+                { _KatOrientacji = NowyKatOrientacjiSt; }
         
         /*  Rotation matrix - access */
-            Macierz3D& Get_RotationMatrix () { return MacierzRotacji; }
-            Macierz3D Get_RotationMatrix () const { return MacierzRotacji; }
+            Macierz3D& Get_RotationMatrix () { return _MacierzRotacji; }
+            Macierz3D Get_RotationMatrix () const { return _MacierzRotacji; }
         
         /* Rotation matrix- value change */
-            void Change_RotationMatrix () { MacierzRotacji.MacierzRotacji(KatOrientacji);}
+            void Change_RotationMatrix () { _MacierzRotacji.MacierzRotacji(_KatOrientacji);}
         
     /* Polozenie */
 
         /* Dostep do wartosci/referencji */
-            Wektor3D& Wez_Polozenie () { return Polozenie; }
-            Wektor3D Wez_Polozenie () const { return Polozenie; }
+            Wektor3D& Wez_Polozenie () { return _Polozenie; }
+            Wektor3D Wez_Polozenie () const { return _Polozenie; }
         
         /* Zmiana wartosci pola */
             void Zmien_Polozenie (Wektor3D& NowePolozenie)
-                { Polozenie = NowePolozenie; }
+                { _Polozenie = NowePolozenie; }
             void Zmien_Polozenie ( const Wektor3D NowePolozenie)
-                { Polozenie = NowePolozenie; }
+                { _Polozenie = NowePolozenie; }
     
     /* Skala */
 
         /* Zmiana wartosci pola */
             void Zmien_Skale (Wektor3D& NowaSkala)
-                { Skala = NowaSkala; }
+                { _Skala = NowaSkala; }
             void Zmien_Skale ( const Wektor3D NowaSkala)
-                { Skala = NowaSkala; }
+                { _Skala = NowaSkala; }
     
     /* Nazwa bryły */
 
         /* Dostep do zawartosci pola Nazwa_ElementuSkladowego */
             std::string Get_NazwaElementuSkladowego ()
-                { return Nazwa_ElementuSkladowego; }
+                { return _Nazwa_ElementuSkladowego; }
         
     /* Nazwa pliku z bryla wzorcowa */
     
         /* Zmiana wartosci pola */
             void Zmien_NazwaPliku_BrylaWzorcowa ( std::string& NowaNazwa )
-                { NazwaPliku_BrylaWzorcowa = NowaNazwa; }
+                { _NazwaPliku_BrylaWzorcowa = NowaNazwa; }
             void Zmien_NazwaPliku_BrylaWzorcowa ( const std::string NowaNazwa )
-                { NazwaPliku_BrylaWzorcowa = NowaNazwa; }
+                { _NazwaPliku_BrylaWzorcowa = NowaNazwa; }
         
     /* Nazwa pliku do rysowania przez program */
 
         /* Zmiana wartosci pola */
             void Zmien_NazwaPliku_PlikDoRysowania ( std::string& NowaNazwa )
-                { NazwaPliku_PlikDoRysowania = NowaNazwa; }
+                { _NazwaPliku_PlikDoRysowania = NowaNazwa; }
             void Zmien_NazwaPliku_PlikDoRysowania ( const std::string NowaNazwa)
-                { NazwaPliku_PlikDoRysowania = NowaNazwa; }
+                { _NazwaPliku_PlikDoRysowania = NowaNazwa; }
         
         /* Uzyskanie dostępu do nazwy pliku do rysowania */
-            std::string& Get_NazwaPliku () { return NazwaPliku_PlikDoRysowania; }
-            std::string Get_NazwaPliku () const { return NazwaPliku_PlikDoRysowania; }
+            std::string& Get_NazwaPliku () { return _NazwaPliku_PlikDoRysowania; }
+            std::string Get_NazwaPliku () const { return _NazwaPliku_PlikDoRysowania; }
     
     /* Metody klasy ObiektGeom */
 
