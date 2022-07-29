@@ -10,18 +10,6 @@ void Scena::Inicjalizuj_Lacze()
     Lacze.Inicjalizuj();
 }
 
-bool Scena::Dodaj_Do_Listy_Scena(Obiekt& NowyObiekt)
-{
-
-    if (NowyObiekt.Get_ListaObiektowSkladowych().empty()) return false;
-   
-    std::shared_ptr<Obiekt> WskOb = std::make_shared<Obiekt>();
-    *WskOb = NowyObiekt;
-    Lista_Obiektow_Na_Scenie.push_back(WskOb);
-            
-    return true;
-}
-
 void Scena::Dodaj_Do_ListyRysowania()
 {
     std::list<std::shared_ptr<Obiekt>>::iterator Iter = Lista_Obiektow_Na_Scenie.begin();

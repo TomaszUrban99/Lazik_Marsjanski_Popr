@@ -22,10 +22,15 @@ class Lazik: public Obiekt
 
     /* Konstruktory klasy Lazik */
 
+    Lazik () = default;
+
     Lazik ( Wektor3D& PoczatkowePolozenie, Wektor3D& NowaSkala, 
             Wektor3D& PoczatkowyKatOrientacji, std::string NowaNazwa )
         : Obiekt ( PoczatkowePolozenie, NowaSkala, PoczatkowyKatOrientacji, NowaNazwa ) {}
     
+    virtual ~Lazik () = default;
+    
+    virtual ObiektID Get_ObiektID () const { return Lazik_ID; }
     /* Interfejs klasy Lazik */
 
     /* Odleglosc do przejechania */

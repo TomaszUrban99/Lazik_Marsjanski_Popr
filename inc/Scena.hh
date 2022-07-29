@@ -41,7 +41,8 @@ class Scena {
         \param Obiekt& NowyObiekt - referencja do obiektu, który ma zostać dodany do
         listy obiektów znajdujących się na scenie.   
     */
-    bool Dodaj_Do_Listy_Scena (Obiekt& NowyObiekt);
+    template <typename T>
+    bool Dodaj_Do_Listy_Scena (T& NowyObiekt);
 
     /*!
         \brief Metoda dodająca obiekty znajdujące się na liście do listy obiektów
@@ -63,6 +64,28 @@ class Scena {
     void Dodaj_Do_Listy_Obiekty ( std::shared_ptr<Obiekt> NowyObiekt );
 
 };
+
+/* Templates */
+
+/*!
+    \brief
+*/
+template <typename T>
+bool Scena::Dodaj_Do_Listy_Scena (T& NowyObiekt)
+    {
+        if (NowyObiekt.Get_ListaObiektowSkladowych().empty()) return false;
+        
+        std::shared_ptr<T> WskOb = std::make_shared<T>();
+            // Declaration of pointer to the newly created "empty"
+            // instance of type T
+        *WskOb = NowyObiekt;
+            // Assign the new object to the newly created shared pointer
+        Lista_Obiektow_Na_Scenie.push_back(WskOb);
+            // Put the pointer on the back of the list of objects on the scene
+        
+        return true;
+            // If everything was correct, then return true
+    }
 
 /*!
     \brief Przeciążenie operatora wyjścia dla listy wskaźników współdzielonych na obiekty klasy Obiekt

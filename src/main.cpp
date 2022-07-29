@@ -23,6 +23,8 @@ int main()
     const std::string Graniastotlup = "bryly_wzorcowe/graniastoslup6-OY.dat";
     const std::string Szescian1 = "bryly_wzorcowe/szescian1.dat";
 
+    char Command [2] = "p";
+
   Wektor3D Temp (30, 0, 0);
   Wektor3D Skala (10, 10, 10);
   Wektor3D Skala2 (10, 10, 10);
@@ -84,6 +86,19 @@ int main()
 
   cout << "Pacnij!!!" << endl;
   cin >> i;
+
+  while (Command[0] != 'e')
+  {
+    switch (Command[0])
+    {
+      case 'f' :
+      {
+        
+      }
+      break;
+    }
+  }
+
 
 
 

@@ -8,6 +8,15 @@
 #include "ObiektGeom.hh"
 #include "Wektor3D.hh"
 
+/*!
+    \brief Identyfing type for classification of derived objects from base class Obiekt
+
+    #1 Lazik_ID - identificator for derived class Lazik (defined in header file "Lazik.hh")
+    #2 ProbkaRegolitu_ID - identificator for derived class ProbkaRegolitu (defined in header file
+    ProbkaRegolitu.hh)
+*/
+enum ObiektID { Lazik_ID, ProbkaRegolitu_ID};
+
 class Obiekt
 {
   
@@ -39,7 +48,14 @@ class Obiekt
         _NazwaObiektu = NowaNazwa;
     }
 
-    ~Obiekt() = default;
+   virtual ~Obiekt() = default;
+
+/*!
+    \brief Method for identication of derived classes
+        Pure virtual method. It enables identification of type of objects, enabling
+        safe casting of objects.
+*/
+virtual enum ObiektID Get_ObiektID () const = 0;
 
   /* Interfejs klasy Obiekt */
 
