@@ -24,6 +24,7 @@ class SWektor {
     SWektor<STyp,SWymiar> operator * (STyp Mnoznik) const;
     SWektor<STyp,SWymiar> operator + (const SWektor<STyp, SWymiar> &Wektor2) const;
     SWektor<STyp,SWymiar> operator / (STyp Dzielnik) const;
+    SWektor<STyp,SWymiar>& operator% (double Liczba);
     bool operator <= (const SWektor<STyp, SWymiar> &Wektor2) const;
     bool operator >= (const SWektor<STyp, SWymiar> &Wektor2) const;
 
@@ -48,6 +49,15 @@ SWektor<STyp,SWymiar> SWektor<STyp,SWymiar>::operator - (const SWektor<STyp,SWym
 
   for (unsigned int Ind = 0; Ind < SWymiar; ++Ind) Wynik[Ind] = (*this)[Ind] - Odjemnik[Ind];
   return Wynik;
+}
+
+template <typename STyp, int SWymiar>
+SWektor<STyp, SWymiar>& SWektor<STyp, SWymiar>::operator% (double Liczba)
+{
+  for (int i = 0; i < SWymiar; ++i)
+        (*this)[i] = fmod((*this)[i], Liczba);
+
+    return (*this);
 }
 
 

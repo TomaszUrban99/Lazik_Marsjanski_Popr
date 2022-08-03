@@ -25,6 +25,7 @@ int main()
 
     char Command[2] = "p";
     char Translation[2] = "b";
+    double i = 0;
 
   Wektor3D Temp (30, 0, 0);
   Wektor3D Skala (10, 10, 10);
@@ -66,7 +67,7 @@ int main()
                 Trysil.DodajObiekt ( KoloPraweTylne, KatOkr, KoloTP);
           Kolo KoloTL ( 8, Temp2, Temp, Skala, "L1/TL", Graniastotlup, "pliki_do_rysowania/Lazik1/KoloTL.dat");
                 KoloTL.Count_the_Radius();
-                Trysil.DodajObiekt ( KoloLeweTylne, KatOkr2, KoloTL);
+                Trysil.DodajObiekt ( KoloLeweTylne, KatOkr, KoloTL);
         /* Kadlub */
           Kadlub Kadlub2 ( 3, Temp2, Temp, Skala3, "L1/Kadlub", Szescian1, "pliki_do_rysowania/Lazik1/Kadlub.dat");
                 Trysil.DodajObiekt ( KadlubPol, KadlubPol, Kadlub2);
@@ -93,14 +94,6 @@ int main()
   cout << Mars.Get_ActiveLazik()->Get_NazwaObiektu() << endl;
 
   Mars.Get_Lacze().Rysuj();
-  cout << "Podaj odleglosc na jaka ma sie przemiescic lazik: "<< endl;
-  double i;
-  cin >> i;
-
-  Mars.Get_Lacze().Rysuj();
-
-  cout << "Pacnij!!!" << endl;
-  cin >> i;
 
   while (Command[0] != 'q')
   {
@@ -120,7 +113,10 @@ int main()
         {
           cout << "Give the angle for a wheel to rotate (degree)" << endl;
           cin >> i;
+          Mars.Get_ActiveLazik()->Translate_Lazik_WheelRotation(i);
         }
+
+        cout << "Kat po: " << Mars.Get_ActiveLazik()->Get_AktywneKolo()->Wez_KatOrientacji() << endl;
 
         Mars.Get_Lacze().Rysuj();
       }

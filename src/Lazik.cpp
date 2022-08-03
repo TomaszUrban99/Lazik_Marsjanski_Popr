@@ -46,16 +46,25 @@ void Lazik::TranslacjLazika()
     OdlegloscDoPrzejechania = 0;
 }
 
-void Lazik::Translate_Lazik_WheelRotation (double Angle)
+bool Lazik::Translate_Lazik_WheelRotation (double Angle)
 {
     Wektor3D TempAngle (0, Angle, 0);
-    double Distance_To_Move = StopnieNaRadiany (Angle);
+        if (AktywneKolo == nullptr) return false;
+    
+    OdlegloscDoPrzejechania = AktywneKolo->Get_Radius() * StopnieNaRadiany(Angle);
 
     for ( std::shared_ptr<ObiektGeom> Temp: Get_ListaObiektowSkladowych())
     {
         if (Temp->Wez_ID() == Obiekt_Kolo)
-            Temp->Wez_KatOrientacji() = Temp->Wez_KatOrientacji() + TempAngle;
+            {
+                Temp->Wez_KatOrientacji() = (Temp->Wez_KatOrientacji() + TempAngle) % KAT_PELNY;
+                Temp->Change_RotationMatrix();
+            }
     }
 
+    TranslacjLazika();
+    Count_and_Save_Cusps();
     
+    return true;
+
 }

@@ -2,6 +2,7 @@
 #define LAZIK_HH
 
 #include "Obiekt.hh"
+#include "Wektor3D.hh"
 #include "Kolo.hh"
 #include <cmath>
 #include <memory>
@@ -40,6 +41,9 @@ class Lazik: public Obiekt
     /* Odleglosc do przejechania */
         void Zmien_OdlegloscDoPrzejechania (double Odleglosc)
             { OdlegloscDoPrzejechania = Odleglosc; }
+
+    /* Active wheel */
+        std::shared_ptr<Kolo> Get_AktywneKolo () { return AktywneKolo; }
     
     /* Metody klasy Lazik */
 
@@ -78,7 +82,7 @@ class Lazik: public Obiekt
     /*!
         \brief Method to translate lazik by rotation of it's wheels
     */
-    void Translate_Lazik_WheelRotation ( double Angle );
+    bool Translate_Lazik_WheelRotation ( double Angle );
 };
 
 #endif
