@@ -23,7 +23,8 @@ int main()
     const std::string Graniastotlup = "bryly_wzorcowe/graniastoslup6-OY.dat";
     const std::string Szescian1 = "bryly_wzorcowe/szescian1.dat";
 
-    char Command [2] = "p";
+    char Command[2] = "p";
+    char Translation[2] = "b";
 
   Wektor3D Temp (30, 0, 0);
   Wektor3D Skala (10, 10, 10);
@@ -43,30 +44,41 @@ int main()
       Wektor3D KoloPraweTylne (-10, 10, 0);
       Wektor3D KoloLeweTylne (-10, -10, 0);
       Wektor3D KadlubPol (0, 0, 0);
-      Wektor3D KatOkr2 (20, 50, 0);
+      Wektor3D KatOkr2 (0, 20, 0);
+    
+  Kolo Testowe ( 4, KatOkr, Temp, Skala, "LL", Graniastotlup, "pliki_do_rysowania_Probka1.dat");
+
+  Lazik Hamar (KatOkr, Skala, KatOkr, "Hamar");
+    Hamar.DodajObiekt(KatOkr, KatOkr, Testowe);
 
   /* Zadeklarowanie obiektow */
     /* Lazik 1 */
       Lazik Trysil (Temp7, Skala, Temp, "Trysil");
         /* Kola */
           Kolo KoloPP ( 8, Temp2, Temp, Skala, "L1/PP", Graniastotlup, "pliki_do_rysowania/Lazik1/KoloPP.dat");
+                KoloPP.Count_the_Radius();
                 Trysil.DodajObiekt ( KoloPrawePrzednie, KatOkr, KoloPP);
           Kolo KoloPL ( 8, Temp2, Temp, Skala, "L1/PL", Graniastotlup, "pliki_do_rysowania/Lazik1/KoloPL.dat");
+                KoloPL.Count_the_Radius();
                 Trysil.DodajObiekt ( KoloLewePrzednie, KatOkr, KoloPL);
           Kolo KoloTP ( 8, Temp2, Temp, Skala, "L1/TP", Graniastotlup, "pliki_do_rysowania/Lazik1/KoloTP.dat");
+                KoloTP.Count_the_Radius();
                 Trysil.DodajObiekt ( KoloPraweTylne, KatOkr, KoloTP);
           Kolo KoloTL ( 8, Temp2, Temp, Skala, "L1/TL", Graniastotlup, "pliki_do_rysowania/Lazik1/KoloTL.dat");
-                Trysil.DodajObiekt ( KoloLeweTylne, KatOkr, KoloTL);
+                KoloTL.Count_the_Radius();
+                Trysil.DodajObiekt ( KoloLeweTylne, KatOkr2, KoloTL);
         /* Kadlub */
           Kadlub Kadlub2 ( 3, Temp2, Temp, Skala3, "L1/Kadlub", Szescian1, "pliki_do_rysowania/Lazik1/Kadlub.dat");
                 Trysil.DodajObiekt ( KadlubPol, KadlubPol, Kadlub2);
   Scena Mars;
 
   Trysil.Count_and_Save_Cusps();
+  Hamar.Count_and_Save_Cusps();
 
   Mars.Inicjalizuj_Lacze();
   Dodaj_Do_ListyRysowania(Mars.Get_Lacze());
   Mars.Dodaj_Do_Listy_Scena(Trysil);
+  Mars.Dodaj_Do_Listy_Scena(Hamar);
   Mars.Dodaj_Do_ListyRysowania();
 
   Mars.Change_ActiveLazik(1);
@@ -84,25 +96,47 @@ int main()
   cout << "Pacnij!!!" << endl;
   cin >> i;
 
-  while (Command[0] != 'e')
+  while (Command[0] != 'q')
   {
     switch (Command[0])
     {
       case 'f' :
       {
-        cout << "Podaj odleglosc do przejechania " << endl;
-        cin >> i;
+        if ( Translation[0] == 'b')
+        {
+          cout << "Podaj odleglosc do przejechania " << endl;
+          cin >> i;
+          Mars.Get_ActiveLazik()->Zmien_OdlegloscDoPrzejechania(i);
+          Mars.Get_ActiveLazik()->TranslacjLazika();
+        }
 
-        Mars.Get_ActiveLazik()->Zmien_OdlegloscDoPrzejechania(i);
-        Mars.Get_ActiveLazik()->TranslacjLazika();
+        if ( Translation[0] == 'w')
+        {
+          cout << "Give the angle for a wheel to rotate (degree)" << endl;
+          cin >> i;
+        }
+
         Mars.Get_Lacze().Rysuj();
       }
       break;
+
+      case 'c' :
+      {
+        cout << "Change the way of translating lazik" << endl;
+        cout << "b - translate lazik by giving the distance to move, " << endl;
+        cout << "w - translate lazik by giving wheels angle to rotate " << endl;
+        cin >> Translation;
+      }
+      break;
+
     }
 
     cout << "What do you want to do?" << endl;
-    cout << "f - translate Lazik" << endl;
-    cin >> Command [0];
+    cout << "f - translate lazik" << endl;
+    cout << "c - change the way of translating lazik" << endl;
+    cout << "r - rotate lazik" << endl;
+    cout << "q - quit programm" << endl;
+    cin >> Command;
   }
 
 

@@ -99,7 +99,10 @@ class ObiektGeom
                 { _Polozenie = NowePolozenie; }
     
     /* Skala */
-
+        /* Access to the field Skala */
+            Wektor3D& Get_Skala () { return _Skala; }
+            Wektor3D Get_Skala () const { return _Skala; }
+            
         /* Zmiana wartosci pola */
             void Zmien_Skale (Wektor3D& NowaSkala)
                 { _Skala = NowaSkala; }
@@ -127,6 +130,10 @@ class ObiektGeom
                 { _NazwaPliku_PlikDoRysowania = NowaNazwa; }
             void Zmien_NazwaPliku_PlikDoRysowania ( const std::string NowaNazwa)
                 { _NazwaPliku_PlikDoRysowania = NowaNazwa; }
+        
+        /* Access to the name of the file with coordinates of cusps of original solid figure */
+            std::string& Get_FileName_Origin () { return _NazwaPliku_BrylaWzorcowa; }
+            std::string Get_FileName_Origin () const { return _NazwaPliku_BrylaWzorcowa; }
         
         /* Uzyskanie dostępu do nazwy pliku do rysowania */
             std::string& Get_NazwaPliku () { return _NazwaPliku_PlikDoRysowania; }

@@ -17,3 +17,17 @@ void Lazik::TranslacjLazika()
 
     OdlegloscDoPrzejechania = 0;
 }
+
+void Lazik::Translate_Lazik_WheelRotation (double Angle)
+{
+    Wektor3D TempAngle (0, Angle, 0);
+    double Distance_To_Move = Angle * M_PI;
+
+    for ( std::shared_ptr<ObiektGeom> Temp: Get_ListaObiektowSkladowych())
+    {
+        if (Temp->Wez_ID() == Obiekt_Kolo)
+            Temp->Wez_KatOrientacji() = Temp->Wez_KatOrientacji() + TempAngle;
+    }
+
+    
+}

@@ -53,6 +53,11 @@ class Lazik: public Obiekt
         Przyjmuje się, że łazik może poruszać się wyłącznie na płaszczyżnie XY.
     */
     void TranslacjLazika();
+
+    /*!
+        \brief Method to translate lazik by rotation of it's wheels
+    */
+    void Translate_Lazik_WheelRotation ( double Angle );
 };
 
 #endif

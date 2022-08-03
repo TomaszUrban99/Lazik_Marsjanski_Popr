@@ -117,6 +117,8 @@ class Wektor3D : public SWektor<double, ROZMIAR> {
     */
     Wektor3D operator*(Wektor3D& Wektor2);
 
+    bool operator==(Wektor3D& Wektor2);
+
     void operator=(SWektor<double, ROZMIAR> Wektor2){
         for(int i = 0; i < ROZMIAR; ++i) (*this)[i] = Wektor2[i];}
     
@@ -171,6 +173,7 @@ class Wektor3D : public SWektor<double, ROZMIAR> {
     */
     Wektor3D Sinus () const;
 
+    double DistanceBetweenTwoPoints ( Wektor3D& SecondPoint ) const;
 };
 
 #endif

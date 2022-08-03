@@ -6,6 +6,8 @@
 #include <vector>
 #include <memory>
 #include "ObiektGeom.hh"
+#include "Kolo.hh"
+#include "Kadlub.hh"
 #include "Wektor3D.hh"
 
 /*!
@@ -125,11 +127,10 @@ virtual enum ObiektID Get_ObiektID () const = 0;
         \param std::shared_ptr<ObiektGeom> NowyObiekt - wskaźnik na obiekt klasy ObiektGeom, ktory
             zostać dodany do listy obiektow skladowych
     */
-   template <typename T>
+    template <class T>
         void DodajObiekt(   Wektor3D& PolozenieWzgledne,
                             Wektor3D& OrientacjaWzgledna,
                             T& NowyObiekt );
-
     /*!
         \brief Metoda wyliczająca aktualne współrzędne poszczególnych brył składowych
 
@@ -142,7 +143,8 @@ virtual enum ObiektID Get_ObiektID () const = 0;
 /*!
     \brief Szablon metody dodającej składowe elemtny do listy obiektów obiektu typu Obiekt.
 */
-template <typename T> void Obiekt::DodajObiekt(   Wektor3D& PolozenieWzgledne,
+template <class T>
+void Obiekt::DodajObiekt(   Wektor3D& PolozenieWzgledne,
                             Wektor3D& OrientacjaWzgledna,
                             T& NowyObiekt )
 {     
@@ -156,15 +158,11 @@ template <typename T> void Obiekt::DodajObiekt(   Wektor3D& PolozenieWzgledne,
                                 // Wyznaczenie bezwzględnego położenia
                                 // składowego obiektu
     
-    std::cout << "Nazwa elementu: " << Wsk->Get_NazwaElementuSkladowego() << std::endl;
-    std::cout << Wsk->Wez_KatOrientacji() << std:: endl;
-
     Wsk->Wez_KatOrientacji() = OrientacjaWzgledna;
                                 // Wyznaczenie bezwględnego kąta orientacji
                                 // Dodanie obiektu do listy obiektów składowychs
     
     Wsk->Change_RotationMatrix();
-    std::cout << Wsk->Wez_KatOrientacji() << std::endl;
 
     Lista_Skladowych_ObiektowGeom.push_back(Wsk);
         // Umieszczenie obiektu na liście obiektów składowych

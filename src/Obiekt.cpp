@@ -3,7 +3,7 @@
 void Obiekt::Count_and_Save_Cusps ()
 {
     for (std::shared_ptr<ObiektGeom> Temp: Lista_Skladowych_ObiektowGeom)
-        Temp->Count_and_Save_Cusps(_RotationMatrix, _Polozenie);
+            Temp->Count_and_Save_Cusps(_RotationMatrix, _Polozenie);
 }
 
 /* Przeciążenie operatora wyjścia */
