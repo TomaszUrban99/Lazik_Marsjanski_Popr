@@ -70,6 +70,12 @@ int main()
         /* Kadlub */
           Kadlub Kadlub2 ( 3, Temp2, Temp, Skala3, "L1/Kadlub", Szescian1, "pliki_do_rysowania/Lazik1/Kadlub.dat");
                 Trysil.DodajObiekt ( KadlubPol, KadlubPol, Kadlub2);
+      
+      if (!(Trysil.FindTheMainWheel())){
+        cerr << "Fail to correctly read elementary objects" << endl;
+        return -1;
+      };
+    
   Scena Mars;
 
   Trysil.Count_and_Save_Cusps();

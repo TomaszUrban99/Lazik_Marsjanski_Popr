@@ -2,7 +2,9 @@
 #define LAZIK_HH
 
 #include "Obiekt.hh"
+#include "Kolo.hh"
 #include <cmath>
+#include <memory>
 
 /*!
     \brief Klasa modelująca pojęcie łazika poruszającego się po scenie
@@ -17,6 +19,8 @@ class Lazik: public Obiekt
         // Kąt wyrażony w stopniach o jaki powinien obrócić się łazik
     double PredkoscObrotu = 0;
         // Prędkość z jaką łazik powinien obrócić się łazik
+
+    std::shared_ptr<Kolo> AktywneKolo;
 
     public:
 
@@ -38,6 +42,23 @@ class Lazik: public Obiekt
             { OdlegloscDoPrzejechania = Odleglosc; }
     
     /* Metody klasy Lazik */
+
+    /*!
+        \brief Method for finding the wheel on the list of elementary objects
+
+        Firstly, attribute AktywneKolo is checked, whether it does not point to
+        null. If it is so, then it is assumed, that the wheel has already been found,
+        and the true value is being returned. Otherwise the list is checked.
+        
+        The loop goes until the first object of type Kolo is found 
+        ( virtual function Wez_ID returns appropiate ID). 
+        After that the pointer is cast to Kolo and is assigned to the attribute AktywneKolo. 
+
+        \retval true - active wheel has been found
+        \retval false - active has not been found or there were problems by casting
+        the pointer from the list
+    */
+    bool FindTheMainWheel ();
 
     /*!
         \brief Metoda przemieszczająca łazik na określoną odleglosc

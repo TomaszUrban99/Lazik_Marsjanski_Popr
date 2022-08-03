@@ -7,12 +7,12 @@ bool Kolo::Count_the_Radius()
 
     std::ifstream Input (Get_FileName_Origin());
     
-    Input >> Temp;
-    Input >> Temp2;
+    if (!(Input >> Temp)) return false;
+    if (!(Input >> Temp2)) return false;
 
         while ( Temp[1] != Temp2[1] )
-            if ( Temp [1] != Temp2 [1]) Input >> Temp2;
-               
+            if ( Temp [1] != Temp2 [1])
+                if (!(Input >> Temp2)) return false;
 
     if ( Temp[1] == Temp2[1])
         Radius = (Get_Skala())[0] * (Temp.DistanceBetweenTwoPoints(Temp2));
