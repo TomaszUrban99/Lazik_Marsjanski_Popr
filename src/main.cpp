@@ -26,6 +26,7 @@ int main()
     char Command[2] = "p";
     char Translation[2] = "b";
     double i = 0;
+    double Speed;
 
   Wektor3D Temp (30, 0, 0);
   Wektor3D Skala (10, 10, 10);
@@ -103,10 +104,13 @@ int main()
       {
         if ( Translation[0] == 'b')
         {
-          cout << "Podaj odleglosc do przejechania " << endl;
+          cout << " Podaj odleglosc do przejechania " << endl;
           cin >> i;
-          Mars.Get_ActiveLazik()->Zmien_OdlegloscDoPrzejechania(i);
-          Mars.Get_ActiveLazik()->TranslacjLazika();
+            Mars.Get_ActiveLazik()->Zmien_OdlegloscDoPrzejechania(i);
+          cout << " Give the speed of translation " << endl;
+          cin >> Speed;
+            Mars.Get_ActiveLazik()->Change_VelocityTranslation(Speed);
+            Mars.Translation_Animation_Body();
         }
 
         if ( Translation[0] == 'w')

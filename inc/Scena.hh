@@ -8,6 +8,10 @@
 #include "Lazik.hh"
 #include "PowierzchniaMarsa.hh"
 #include "lacze_do_gnuplota.hh"
+#include "assert.h"
+#include <cmath>
+
+constexpr uint CONST_ANIMATION_TRANS_BODY = 500;
 
 class Scena {
 
@@ -71,6 +75,17 @@ class Scena {
         którego elementy składowe powinny zostać wyświetlone przez program GNUPlot.
     */
     void Dodaj_Do_Listy_Obiekty ( std::shared_ptr<Obiekt> NowyObiekt );
+
+    /*!
+        \brief Method to animate translation movement of the vehicle
+    */
+   bool Translation_Animation_Body ();
+
+   /*!
+        \brief Method to animate translation movement of the vehicle by steering
+        the movement by the wheel.
+    */
+   void Translation_Animation_Wheel ();
 
 };
 

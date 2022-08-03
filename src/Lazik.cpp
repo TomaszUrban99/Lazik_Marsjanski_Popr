@@ -31,6 +31,7 @@ bool Lazik::FindTheMainWheel ()
 void Lazik::TranslacjLazika()
 {
     Wektor3D WspTemp;
+    Wektor3D Angle  ( 0, 0, 0);
     double KatRadiany = StopnieNaRadiany ((Get_KatOrientacji())[ZERO]);
         // Konwersja kąta orientacji łazika na płaszczyźnie XY na radiany
 
@@ -41,8 +42,18 @@ void Lazik::TranslacjLazika()
 
     Get_Polozenie() = Get_Polozenie() + WspTemp;
 
-    Count_and_Save_Cusps();
+    Angle[1] = RadianyNaStopnie (OdlegloscDoPrzejechania / (AktywneKolo->Get_Radius()));
 
+    for ( std::shared_ptr<ObiektGeom> Temp: Get_ListaObiektowSkladowych())
+    {
+        if ( Temp->Wez_ID() == Obiekt_Kolo )
+        {
+            Temp->Wez_KatOrientacji() = (Temp->Wez_KatOrientacji() + Angle) % KAT_PELNY;
+            Temp->Change_RotationMatrix();
+        }
+    }
+    
+    Count_and_Save_Cusps();
     OdlegloscDoPrzejechania = 0;
 }
 

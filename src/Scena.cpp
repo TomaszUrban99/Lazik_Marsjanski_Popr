@@ -49,6 +49,22 @@ void Scena::Dodaj_Do_Listy_Obiekty(std::shared_ptr<Obiekt> NowyObiekt)
     }
 }
 
+bool Scena::Translation_Animation_Body()
+{
+    assert(_ActiveLazik->Get_VelocityTranslation() < CONST_ANIMATION_TRANS_BODY * (_ActiveLazik->Get_DistanceToMove()));
+
+    double DistancePeriod = (_ActiveLazik->Get_VelocityTranslation()) / CONST_ANIMATION_TRANS_BODY;
+
+    for ( uint i = 0; i < CONST_ANIMATION_TRANS_BODY; ++i)
+    {
+        _ActiveLazik->Get_DistanceToMove() = DistancePeriod;
+        _ActiveLazik->TranslacjLazika();
+        _Lacze.Rysuj();
+    }
+
+    return true;
+}
+
 std::ostream& operator<< ( std::ostream& Output, std::list<std::shared_ptr<Obiekt>>& Lista)
 {
     for (std::shared_ptr<Obiekt> Temp: Lista)

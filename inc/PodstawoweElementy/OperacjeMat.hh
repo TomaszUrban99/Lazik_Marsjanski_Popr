@@ -11,6 +11,8 @@ constexpr double KAT_PELNY = 360;
 */
 double StopnieNaRadiany (double AngleSt);
 
+double RadianyNaStopnie (double AngleRad);
+
 int Znak (double Szybkosc);
 
 #endif

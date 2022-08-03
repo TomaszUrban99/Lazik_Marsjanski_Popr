@@ -39,8 +39,17 @@ class Lazik: public Obiekt
     /* Interfejs klasy Lazik */
 
     /* Odleglosc do przejechania */
+        double Get_DistanceToMove () const { return OdlegloscDoPrzejechania; }
+        double& Get_DistanceToMove () { return OdlegloscDoPrzejechania; }
+
         void Zmien_OdlegloscDoPrzejechania (double Odleglosc)
             { OdlegloscDoPrzejechania = Odleglosc; }
+    
+    /* Velocity of translation */
+        double Get_VelocityTranslation () { return PredkoscPrzejazdu; }
+
+        void Change_VelocityTranslation ( double Velocity)
+            { PredkoscPrzejazdu = Velocity; }
 
     /* Active wheel */
         std::shared_ptr<Kolo> Get_AktywneKolo () { return AktywneKolo; }
@@ -81,6 +90,23 @@ class Lazik: public Obiekt
 
     /*!
         \brief Method to translate lazik by rotation of it's wheels
+
+        PRE: AktywneKolo should not point to null
+
+        \param double Angle - the value of an angle to rotate the wheel about
+
+        Firstly, at the base of angle given as parameter (Angle) and the radius
+        of the active Wheel, the linear distance to move is counted. It's saved
+        in the member OdlegloscDoPrzejechania.
+
+        After that, by every wheel on the list, the orientation angle is changed.
+        To keep the orientation angle between 0 and 360, the current value of angle
+        is computed with the help of modulo operation.
+
+        After going through the whole list, the method TranslacjaLazika() is run. 
+
+        \retval bool true - 
+        \retval bool false - member AktywneKolo points to null
     */
     bool Translate_Lazik_WheelRotation ( double Angle );
 };
