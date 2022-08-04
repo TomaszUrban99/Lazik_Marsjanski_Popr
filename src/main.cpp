@@ -130,6 +130,20 @@ int main()
       }
       break;
 
+      case 'r' :
+      {
+        cout << "Give the angle for a vehicle to rotate (degree)" << endl;
+        cin >> i;
+        cout << "Give the velocity for a vehicle to rotate" << endl;
+        cin >> Speed;
+
+          Mars.Get_ActiveLazik()->Change_AngleToRotate(i);
+          Mars.Get_ActiveLazik()->Change_VelocityRotation(Speed);
+          Mars.Rotation_Animation();
+          Mars.Get_Lacze().Rysuj();
+      }
+      break;
+
       case 'c' :
       {
         cout << "Change the way of translating lazik" << endl;

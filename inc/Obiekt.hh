@@ -94,8 +94,17 @@ virtual enum ObiektID Get_ObiektID () const = 0;
     /* Zmiana wartosci pola _KatOrientacjiSt */
         void Change_KatOrientacjiSt (Wektor3D& NowyKatSt)
             { _KatOrientacjiSt = NowyKatSt;}
-        void Change_KatOrientacjiSt (const Wektor3D NowyKatSt)
+        void Change_KatOrientacjiSt (Wektor3D NowyKatSt)
             { _KatOrientacjiSt = NowyKatSt;}
+        
+        void Add_KatOrientacjiSt (Wektor3D& AddKatSt)
+            { 
+                _KatOrientacjiSt = _KatOrientacjiSt + AddKatSt; 
+                _RotationMatrix.MacierzRotacji(_KatOrientacjiSt);
+            }
+    
+    /* Rotation matrix */
+        Macierz3D& Get_MacierzRotacji () { return _RotationMatrix; }
   
   /* atrybut: _NazwaObiektu */
     

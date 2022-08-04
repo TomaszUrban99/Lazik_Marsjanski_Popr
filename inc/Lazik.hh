@@ -50,6 +50,24 @@ class Lazik: public Obiekt
 
         void Change_VelocityTranslation ( double Velocity)
             { PredkoscPrzejazdu = Velocity; }
+    
+    /* Angle to rotate */
+        /* Get access to angle to rotate */
+        double Get_AngleToRotate () const { return KatDoObrotuSt; }
+        double& Get_AngleToRotate () { return KatDoObrotuSt; }
+    
+        /* Change the angle to rotate */
+        void Change_AngleToRotate ( double NewAngle )
+            { KatDoObrotuSt = NewAngle; }
+    
+    /* Rotation velocity */
+        /* Get access to rotation vehicle */
+        double Get_VelocityRotation () const { return PredkoscObrotu; }
+        double& Get_VelocityRotation () { return PredkoscObrotu; }
+
+        /* Change rotation velocity */
+        void Change_VelocityRotation ( double VelocityRotation )
+            { PredkoscObrotu = VelocityRotation; }
 
     /* Active wheel */
         std::shared_ptr<Kolo> Get_AktywneKolo () { return AktywneKolo; }
@@ -99,16 +117,17 @@ class Lazik: public Obiekt
         of the active Wheel, the linear distance to move is counted. It's saved
         in the member OdlegloscDoPrzejechania.
 
-        After that, by every wheel on the list, the orientation angle is changed.
-        To keep the orientation angle between 0 and 360, the current value of angle
-        is computed with the help of modulo operation.
-
-        After going through the whole list, the method TranslacjaLazika() is run. 
+        After that the method TranslacjaLazika() is run. 
 
         \retval bool true - 
         \retval bool false - member AktywneKolo points to null
     */
     bool Translate_Lazik_WheelRotation ( double Angle );
+
+    /*!
+        \brief Method to rotate the vehicle
+    */
+    bool Rotate_Lazik ();
 };
 
 #endif

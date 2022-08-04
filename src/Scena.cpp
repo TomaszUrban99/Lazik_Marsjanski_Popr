@@ -59,6 +59,12 @@ uint Scena::Translation_Animation_Count_Wheel ( double AngleDegree )
     return ceil ( fabs (AngleDegree) / fabs ( _ActiveLazik->Get_VelocityTranslation())) * CONST_ANIMATION_TRANS_WHEEL;
 }
 
+/* Method to count the number of frames to divide the rotation movement */
+uint Scena::Rotation_Animation_Count ()
+{
+    return ceil ( fabs (_ActiveLazik->Get_AngleToRotate()) / fabs ( _ActiveLazik->Get_VelocityRotation())) * CONST_ANIMATION_ROTATE;
+}
+
 bool Scena::Translation_Animation_Body()
 {
     assert(_ActiveLazik->Get_VelocityTranslation() < CONST_ANIMATION_TRANS_BODY * (_ActiveLazik->Get_DistanceToMove()));
@@ -80,16 +86,29 @@ bool Scena::Translation_Animation_Wheel( double AngleDegree)
 {
     uint Count = Translation_Animation_Count_Wheel ( AngleDegree );
     double AnglePeriod = AngleDegree / Count;
-    
-    std::cout << "Kat jednostkowy: " << AnglePeriod;
-    std::cout << "Liczba jednostek: " << Count;
 
     for ( uint i = 0; i < Count; ++i)
     {
         _ActiveLazik->Translate_Lazik_WheelRotation(AnglePeriod);
-        std::cout << _ActiveLazik->Get_AktywneKolo()->Wez_KatOrientacji();
         _Lacze.Rysuj();
     }
+
+    return true;
+}
+
+bool Scena::Rotation_Animation()
+{
+    uint Count = Rotation_Animation_Count ();
+    double AnglePeriod = _ActiveLazik->Get_AngleToRotate() / Count;
+
+    for ( uint i = 0; i < Count; ++i)
+    {
+        _ActiveLazik->Get_AngleToRotate() = AnglePeriod;
+        _ActiveLazik->Rotate_Lazik();
+        _Lacze.Rysuj();
+    }
+
+    _ActiveLazik->Get_AngleToRotate() = 0;
 
     return true;
 }

@@ -13,6 +13,7 @@
 
 constexpr uint CONST_ANIMATION_TRANS_BODY = 100;
 constexpr uint CONST_ANIMATION_TRANS_WHEEL = 100;
+constexpr uint CONST_ANIMATION_ROTATE = 10;
 
 class Scena {
 
@@ -27,6 +28,8 @@ class Scena {
     uint Translation_Animation_Count_Body ();
 
     uint Translation_Animation_Count_Wheel ( double AngleDegree );
+
+    uint Rotation_Animation_Count ();
 
     public:
 
@@ -90,9 +93,15 @@ class Scena {
 
    /*!
         \brief Method to animate translation movement of the vehicle by steering
-        the movement by the wheel.
+        it's movement by one of it's wheel.
+
+        \param double AngleDegree - angle expressed in degrees about which the
+        wheel should rotate
+
     */
    bool Translation_Animation_Wheel ( double AngleDegree );
+
+   bool Rotation_Animation ();
 
 };
 

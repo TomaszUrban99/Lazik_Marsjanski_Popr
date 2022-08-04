@@ -70,3 +70,17 @@ bool Lazik::Translate_Lazik_WheelRotation (double Angle)
     return true;
 
 }
+
+/* Metohod to rotate the vehicle */
+    bool Lazik::Rotate_Lazik()
+    {
+        Wektor3D Temp ( KatDoObrotuSt, 0, 0);
+
+        Add_KatOrientacjiSt ( Temp );
+        Get_MacierzRotacji().MacierzRotacji(Get_KatOrientacji());
+        Count_and_Save_Cusps();
+
+        KatDoObrotuSt = 0;
+
+        return true;
+    }
