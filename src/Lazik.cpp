@@ -64,15 +64,6 @@ bool Lazik::Translate_Lazik_WheelRotation (double Angle)
     
     OdlegloscDoPrzejechania = AktywneKolo->Get_Radius() * StopnieNaRadiany(Angle);
 
-    for ( std::shared_ptr<ObiektGeom> Temp: Get_ListaObiektowSkladowych())
-    {
-        if (Temp->Wez_ID() == Obiekt_Kolo)
-            {
-                Temp->Wez_KatOrientacji() = (Temp->Wez_KatOrientacji() + TempAngle) % KAT_PELNY;
-                Temp->Change_RotationMatrix();
-            }
-    }
-
     TranslacjLazika();
     Count_and_Save_Cusps();
     

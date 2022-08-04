@@ -49,16 +49,45 @@ void Scena::Dodaj_Do_Listy_Obiekty(std::shared_ptr<Obiekt> NowyObiekt)
     }
 }
 
+uint Scena::Translation_Animation_Count_Body ()
+{
+    return ceil ( fabs ( _ActiveLazik->Get_DistanceToMove()) / fabs ( _ActiveLazik->Get_VelocityTranslation())) * CONST_ANIMATION_TRANS_BODY;
+}
+
+uint Scena::Translation_Animation_Count_Wheel ( double AngleDegree )
+{
+    return ceil ( fabs (AngleDegree) / fabs ( _ActiveLazik->Get_VelocityTranslation())) * CONST_ANIMATION_TRANS_WHEEL;
+}
+
 bool Scena::Translation_Animation_Body()
 {
     assert(_ActiveLazik->Get_VelocityTranslation() < CONST_ANIMATION_TRANS_BODY * (_ActiveLazik->Get_DistanceToMove()));
+    uint Count = Translation_Animation_Count_Body();
 
-    double DistancePeriod = (_ActiveLazik->Get_VelocityTranslation()) / CONST_ANIMATION_TRANS_BODY;
+    double DistancePeriod = (_ActiveLazik->Get_DistanceToMove()) / Count;
 
-    for ( uint i = 0; i < CONST_ANIMATION_TRANS_BODY; ++i)
+    for ( uint i = 0; i < Count; ++i)
     {
         _ActiveLazik->Get_DistanceToMove() = DistancePeriod;
         _ActiveLazik->TranslacjLazika();
+        _Lacze.Rysuj();
+    }
+
+    return true;
+}
+
+bool Scena::Translation_Animation_Wheel( double AngleDegree)
+{
+    uint Count = Translation_Animation_Count_Wheel ( AngleDegree );
+    double AnglePeriod = AngleDegree / Count;
+    
+    std::cout << "Kat jednostkowy: " << AnglePeriod;
+    std::cout << "Liczba jednostek: " << Count;
+
+    for ( uint i = 0; i < Count; ++i)
+    {
+        _ActiveLazik->Translate_Lazik_WheelRotation(AnglePeriod);
+        std::cout << _ActiveLazik->Get_AktywneKolo()->Wez_KatOrientacji();
         _Lacze.Rysuj();
     }
 

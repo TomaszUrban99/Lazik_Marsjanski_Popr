@@ -105,10 +105,11 @@ int main()
         if ( Translation[0] == 'b')
         {
           cout << " Podaj odleglosc do przejechania " << endl;
-          cin >> i;
+          cin >> i; 
             Mars.Get_ActiveLazik()->Zmien_OdlegloscDoPrzejechania(i);
           cout << " Give the speed of translation " << endl;
           cin >> Speed;
+            
             Mars.Get_ActiveLazik()->Change_VelocityTranslation(Speed);
             Mars.Translation_Animation_Body();
         }
@@ -117,7 +118,10 @@ int main()
         {
           cout << "Give the angle for a wheel to rotate (degree)" << endl;
           cin >> i;
-          Mars.Get_ActiveLazik()->Translate_Lazik_WheelRotation(i);
+          cout << "Give the speed of vehicle to move" << endl;
+          cin >> Speed;
+            Mars.Get_ActiveLazik()->Change_VelocityTranslation(Speed);
+            Mars.Translation_Animation_Wheel(i);
         }
 
         cout << "Kat po: " << Mars.Get_ActiveLazik()->Get_AktywneKolo()->Wez_KatOrientacji() << endl;

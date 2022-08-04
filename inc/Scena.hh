@@ -11,7 +11,8 @@
 #include "assert.h"
 #include <cmath>
 
-constexpr uint CONST_ANIMATION_TRANS_BODY = 500;
+constexpr uint CONST_ANIMATION_TRANS_BODY = 100;
+constexpr uint CONST_ANIMATION_TRANS_WHEEL = 100;
 
 class Scena {
 
@@ -22,6 +23,10 @@ class Scena {
     PzG::LaczeDoGNUPlota _Lacze;
         // Obiekt klasy LaczeDoGNUPlota stanowiący interfejsc z programem GNUPlot. Klasa została
         // zadeklarowana w pliku nagłówkowym lacze_do_gnuplota.hh
+
+    uint Translation_Animation_Count_Body ();
+
+    uint Translation_Animation_Count_Wheel ( double AngleDegree );
 
     public:
 
@@ -76,6 +81,8 @@ class Scena {
     */
     void Dodaj_Do_Listy_Obiekty ( std::shared_ptr<Obiekt> NowyObiekt );
 
+    
+
     /*!
         \brief Method to animate translation movement of the vehicle
     */
@@ -85,7 +92,7 @@ class Scena {
         \brief Method to animate translation movement of the vehicle by steering
         the movement by the wheel.
     */
-   void Translation_Animation_Wheel ();
+   bool Translation_Animation_Wheel ( double AngleDegree );
 
 };
 
